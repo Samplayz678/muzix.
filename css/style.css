@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-dark: #0a0a0a;
+  --bg-dark: #050505;
   --text-main: #f8fafc;
   --text-muted: #a1a1aa;
-  --accent-primary: #8b5cf6;
-  --accent-secondary: #0ea5e9;
-  --accent-tertiary: #ec4899;
-  
-  /* Material/Fluent Glass */
+
+  /* 🔴 Red Theme */
+  --accent-primary: #ef4444;   /* main red */
+  --accent-secondary: #b91c1c; /* deep red */
+  --accent-tertiary: #f87171;  /* light red */
+
+  /* Glass */
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.5);
+  --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.7);
+
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --radius-lg: 24px;
   --radius-md: 16px;
