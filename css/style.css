@@ -507,36 +507,68 @@ section {
 /* --- Socials Stack --- */
 .social-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 🔥 changed from 4 → 3 */
   gap: 2rem;
 }
 
+/* 🔥 About Muzix (full width top) */
+.about-bot {
+  grid-column: 1 / 4;
+  text-align: left;
+  align-items: flex-start;
+}
+
+/* Card base */
 .social-card {
   padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
   gap: 1.5rem;
+  border-radius: var(--radius-lg);
 }
 
+/* Default center cards */
+.social-card:not(.about-bot) {
+  align-items: center;
+  text-align: center;
+}
+
+/* About card text */
+.about-bot p {
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+/* Icons */
 .social-card i.main-icon {
   font-size: 6rem;
   color: var(--accent-primary);
   transition: var(--transition);
 }
 
+/* Hover animation */
 .social-card:hover i.main-icon {
   transform: scale(1.2) translateY(-10px);
   filter: drop-shadow(0 0 20px var(--accent-primary));
 }
 
-.social-card h4 { font-size: 2.4rem; font-weight: 700; }
-.social-card p { font-size: 1.4rem; color: var(--text-muted); }
+/* Typography */
+.social-card h4 { 
+  font-size: 2.4rem; 
+  font-weight: 700; 
+}
 
+.social-card p { 
+  font-size: 1.4rem; 
+  color: var(--text-muted); 
+}
+
+/* Button */
 .btn-icon {
-  width: 50px; height: 50px;
+  width: 50px; 
+  height: 50px;
   border-radius: 50%;
   background: #fff;
   color: var(--bg-dark);
@@ -547,6 +579,7 @@ section {
   margin-top: 1rem;
   transition: var(--transition);
 }
+
 .social-card:hover .btn-icon {
   background: var(--accent-primary);
   color: #fff;
