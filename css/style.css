@@ -361,6 +361,7 @@ section {
   margin: 5rem 0;
   white-space: nowrap;
   display: flex;
+  mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
 }
 
 .marquee-content {
@@ -384,7 +385,7 @@ section {
 
 @keyframes scroll-left {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* --- About Dense Bento Grid --- */
