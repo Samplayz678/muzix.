@@ -649,3 +649,152 @@ section {
   * { cursor: auto; }
   .cursor-dot, .cursor-outline { display: none; }
 }
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+
+  /* Hero */
+  .hero-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-img-card {
+    height: 300px;
+  }
+
+  /* About Section */
+  .about-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .about-intro,
+  .stats-card,
+  .skills-card {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  /* Social Section */
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-bot {
+    grid-column: auto !important;
+  }
+}
+
+
+/* ================= SMALL DEVICES ================= */
+
+@media (max-width: 768px) {
+
+  html {
+    font-size: 55%; /* slightly smaller text */
+  }
+
+  /* Header */
+  .header {
+    width: 95%;
+    padding: 1.2rem 2rem;
+  }
+
+  #menu-icon {
+    display: block;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    flex-direction: column;
+    display: none;
+    gap: 2rem;
+    border: 1px solid var(--glass-border);
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .navbar a {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  /* Hero Text */
+  .hero-main h1 {
+    font-size: 4rem;
+  }
+
+  .hero-main .text-animation {
+    font-size: 2rem;
+  }
+
+  .hero-main p {
+    font-size: 1.6rem;
+  }
+
+  /* Buttons wrap nicely */
+  .hero-main div[style*="flex"] {
+    justify-content: center;
+  }
+
+  /* Marquee */
+  .marquee-content span {
+    font-size: 2rem;
+  }
+
+  /* Cards */
+  .bento-card {
+    padding: 2.5rem;
+  }
+
+  /* About text */
+  .about-bot p {
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  .footer {
+    font-size: 1.4rem;
+    padding: 3rem 2rem;
+  }
+}
+
+
+/* ================= EXTRA SMALL (PHONES) ================= */
+
+@media (max-width: 480px) {
+
+  html {
+    font-size: 50%;
+  }
+
+  .hero-main h1 {
+    font-size: 3.2rem;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
+
+  .social-card i.main-icon {
+    font-size: 4.5rem;
+  }
+
+  .btn-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 2rem;
+  }
+
+}
