@@ -82,7 +82,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- Typing Text Animation ---
-  const textArray = ["Web Developer", "Node.js Enthusiast", "Python Programmer", "Student"];
+  const textArray = [
+  "Discord Music System",
+  "Seamless Playback",
+  "Smart Playlists",
+  "Advanced Controls",
+  "Nonstop Music Vibes"
+];
   const typingDelay = 100;
   const erasingDelay = 100;
   const newTextDelay = 2000;
