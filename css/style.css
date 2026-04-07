@@ -398,33 +398,16 @@ section {
 /* --- About Dense Bento Grid --- */
 .about-bento {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* 🔥 main fix */
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 2fr 1fr;
+  grid-auto-rows: minmax(180px, auto);
   gap: 2rem;
 }
 
-/* Big main card (left top) */
+/* Big main card */
 .about-intro {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
-
-.about-intro h2 { font-size: 3.5rem; margin-bottom: 1rem; }
-.about-intro p { font-size: 1.8rem; color: var(--text-muted); margin-bottom: 2rem; }
-
-/* Base style */
-.stats-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 180px; /* 🔥 keeps cards equal */
-  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(236, 72, 153, 0.1));
-}
-
-.stats-card i { font-size: 5rem; color: var(--accent-tertiary); margin-bottom: 1rem; }
-.stats-card h4 { font-size: 2rem; }
 
 /* 24/7 Playback (top right) */
 .stats-card:nth-of-type(2) {
@@ -432,18 +415,45 @@ section {
   grid-row: 1 / 2;
 }
 
-/* Custom Playlist (bottom left) */
+/* Custom Playlist (bottom left ONLY, no stretch) */
 .stats-card:nth-of-type(3) {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
+  max-width: 400px; /* 🔥 stops over-stretching */
 }
 
-/* Bottom full width */
+/* Core Features full width */
 .skills-card {
   grid-column: 1 / 3;
   grid-row: 3 / 4;
 }
 
+/* Card styling */
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 180px;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(239, 68, 68, 0.08));
+  border-radius: var(--radius-lg);
+}
+
+/* Typography */
+.about-intro h2 { font-size: 3.5rem; margin-bottom: 1rem; }
+.about-intro p { font-size: 1.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+.stats-card i {
+  font-size: 5rem;
+  color: var(--accent-tertiary);
+  margin-bottom: 1rem;
+}
+
+.stats-card h4 { font-size: 2rem; }
+
+/* Skills */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -465,14 +475,16 @@ section {
   transition: var(--transition);
 }
 
-.skill-tag i { font-size: 2rem; color: var(--accent-secondary); }
+.skill-tag i {
+  font-size: 2rem;
+  color: var(--accent-secondary);
+}
 
 .skill-tag:hover {
-  background: rgba(239, 68, 68, 0.15); /* 🔥 matches your red theme */
+  background: rgba(239, 68, 68, 0.15);
   border-color: var(--accent-primary);
   transform: translateY(-5px);
 }
-
 /* --- Socials Stack --- */
 .social-grid {
   display: grid;
