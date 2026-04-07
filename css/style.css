@@ -415,11 +415,20 @@ section {
   grid-row: 1 / 2;
 }
 
-/* Custom Playlist (bottom left ONLY, no stretch) */
+/* 🔥 FIX: Bottom row equal layout */
+.stats-card:nth-of-type(3),
+.stats-card:nth-of-type(4) {
+  grid-row: 2 / 3;
+}
+
+/* Custom Playlist (left) */
 .stats-card:nth-of-type(3) {
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
-  max-width: 400px; /* 🔥 stops over-stretching */
+}
+
+/* Audio Filters (right) */
+.stats-card:nth-of-type(4) {
+  grid-column: 2 / 3;
 }
 
 /* Core Features full width */
@@ -442,8 +451,16 @@ section {
 }
 
 /* Typography */
-.about-intro h2 { font-size: 3.5rem; margin-bottom: 1rem; }
-.about-intro p { font-size: 1.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+.about-intro h2 { 
+  font-size: 3.5rem; 
+  margin-bottom: 1rem; 
+}
+
+.about-intro p { 
+  font-size: 1.8rem; 
+  color: var(--text-muted); 
+  margin-bottom: 2rem;
+}
 
 .stats-card i {
   font-size: 5rem;
@@ -451,7 +468,9 @@ section {
   margin-bottom: 1rem;
 }
 
-.stats-card h4 { font-size: 2rem; }
+.stats-card h4 { 
+  font-size: 2rem; 
+}
 
 /* Skills */
 .skills-container {
