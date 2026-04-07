@@ -511,14 +511,13 @@ section {
   gap: 2rem;
 }
 
-/* 🔥 About Muzix (full width top - centered) */
+/* 🔥 About Muzix (full width top - centered + better spacing) */
 .about-bot {
   grid-column: 1 / 4;
-
-  /* ✅ CENTER EVERYTHING */
   text-align: center;
   align-items: center;
   justify-content: center;
+  padding: 5rem 3rem; /* 🔥 more breathing space */
 }
 
 /* Card base */
@@ -537,12 +536,23 @@ section {
   text-align: center;
 }
 
-/* 🔥 About card text (center properly) */
+/* 🔥 About text improved readability */
 .about-bot p {
   font-size: 1.6rem;
   color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto; /* ✅ center text block */
+  max-width: 700px;      /* 🔥 better width */
+  margin: 0 auto;
+  line-height: 1.8;      /* 🔥 key fix */
+}
+
+/* spacing between paragraphs */
+.about-bot p + p {
+  margin-top: 1.2rem;
+}
+
+/* spacing under heading */
+.about-bot h4 {
+  margin-top: 1rem;
 }
 
 /* Icons */
@@ -589,7 +599,6 @@ section {
   color: #fff;
   transform: scale(1.1);
 }
-
 /* --- Footer --- */
 .footer {
   text-align: center;
