@@ -363,12 +363,15 @@ section {
   display: flex;
   mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
 }
-
+.marquee-group {
+  display: flex;
+  gap: 4rem;
+}
 .marquee-content {
   display: flex;
   gap: 4rem;
-  animation: scroll-left 20s linear infinite;
-  padding-right: 4rem;
+  width: max-content;              /* 🔥 important */
+  animation: scroll-left 25s linear infinite;
 }
 
 .marquee-content span {
@@ -384,8 +387,12 @@ section {
 }
 
 @keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* --- About Dense Bento Grid --- */
