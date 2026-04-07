@@ -507,15 +507,18 @@ section {
 /* --- Socials Stack --- */
 .social-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 🔥 changed from 4 → 3 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
-/* 🔥 About Muzix (full width top) */
+/* 🔥 About Muzix (full width top - centered) */
 .about-bot {
   grid-column: 1 / 4;
-  text-align: left;
-  align-items: flex-start;
+
+  /* ✅ CENTER EVERYTHING */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Card base */
@@ -534,11 +537,12 @@ section {
   text-align: center;
 }
 
-/* About card text */
+/* 🔥 About card text (center properly) */
 .about-bot p {
   font-size: 1.6rem;
   color: var(--text-muted);
   max-width: 600px;
+  margin: 0 auto; /* ✅ center text block */
 }
 
 /* Icons */
