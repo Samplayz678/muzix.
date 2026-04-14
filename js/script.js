@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Hover effects for the custom cursor
-  document.querySelectorAll('a, i').forEach(el => {
+  // ADDED 'summary' here to make the cursor expand on dropdown headers!
+  document.querySelectorAll('a, i, summary').forEach(el => {
     el.addEventListener('pointerenter', () => {
       if(cursorOutline) {
         cursorOutline.style.width = '60px';
@@ -36,6 +37,34 @@ document.addEventListener("DOMContentLoaded", function () {
         cursorOutline.style.width = '40px';
         cursorOutline.style.height = '40px';
         cursorOutline.style.backgroundColor = 'transparent';
+      }
+    });
+  });
+
+  // --- Smooth Dropdown Animation for Docs ---
+  const allDetails = document.querySelectorAll('details');
+  allDetails.forEach(detail => {
+    detail.addEventListener('click', (e) => {
+      // Intercept clicks specifically on the summary header
+      if (e.target.closest('summary')) {
+        e.preventDefault(); // Stop the default instant snap
+        
+        // Prevent clicking again while it's already animating shut
+        if (detail.classList.contains('is-closing')) return;
+
+        if (detail.open) {
+          // It's open, so trigger the closing animation
+          detail.classList.add('is-closing');
+          
+          // Wait for the CSS transition (400ms) to finish before removing 'open'
+          setTimeout(() => {
+            detail.removeAttribute('open');
+            detail.classList.remove('is-closing');
+          }, 400); 
+        } else {
+          // It's closed, so open it (CSS handles the smooth opening automatically)
+          detail.setAttribute('open', 'true');
+        }
       }
     });
   });
@@ -170,6 +199,5 @@ document.addEventListener("DOMContentLoaded", function () {
       el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
     });
   }
-
 
 });
