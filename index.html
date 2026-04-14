@@ -2,572 +2,524 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muzix | Best Music Bot</title>
-  <link href="css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="icon" type="image/x-icon" href="images/muzix_new.png">
-  <meta name="description" content="Muzix isn’t just a music bot it’s a complete Discord music system with playback, playlists, and controls to upgrade your server’s vibe.">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muzix | Best Music Bot</title>
+  <link href="css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="images/muzix_new.png">
+  <meta name="description" content="Muzix isn’t just a music bot it’s a complete Discord music system with playback, playlists, and controls to upgrade your server’s vibe.">
 
-  <style>
-    /* Base and Performance Section */
-    .performance-section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      font-family: inherit;
-    }
+  <style>
+    .performance-section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: inherit;
+    }
 
-    /* Top Pill Badge */
-    .performance-header {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-    .badge-pill {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(20, 10, 30, 0.8);
-      border: 1px solid rgba(170, 0, 255, 0.2);
-      padding: 8px 24px 8px 8px;
-      border-radius: 50px;
-      box-shadow: 0 0 20px rgba(170, 0, 255, 0.15);
-    }
-    .badge-icon {
-      background: linear-gradient(135deg, #d500f9, #aa00ff);
-      color: white !important;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-    .badge-prefix {
-      font-size: 0.65rem;
-      color: #aaa;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
-      line-height: 1.2;
-    }
-    .badge-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-    }
+    /* Top Pill Badge */
+    .performance-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .badge-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(20, 10, 30, 0.8);
+      border: 1px solid rgba(170, 0, 255, 0.2);
+      padding: 8px 24px 8px 8px;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(170, 0, 255, 0.15);
+    }
+    .badge-icon {
+      background: linear-gradient(135deg, #d500f9, #aa00ff);
+      color: white !important;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .badge-prefix {
+      font-size: 0.65rem;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1.2;
+    }
+    .badge-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
 
-    /* Grid Layout */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1.5rem;
-    }
+    /* Grid Layout */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+    }
 
-    /* Base Card Styling */
-    .stat-bento-card, .feature-card {
-      background: linear-gradient(145deg, rgba(35, 20, 50, 0.6), rgba(15, 10, 20, 0.8));
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 24px;
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
-    }
-    .stat-bento-card:hover, .feature-card:hover {
-      transform: translateY(-5px);
-    }
-    .stat-bento-card h1 {
-      font-size: 3.5rem;
-      margin: 0.5rem 0;
-      color: white;
-      font-weight: 800;
-      line-height: 1;
-    }
-    .stat-bento-card p {
-      color: #9aa0a6;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
+    /* Base Card Styling */
+    .stat-bento-card {
+      background: linear-gradient(145deg, rgba(35, 20, 50, 0.6), rgba(15, 10, 20, 0.8));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+    .stat-bento-card:hover {
+      transform: translateY(-5px);
+    }
+    .stat-bento-card h1 {
+      font-size: 3.5rem;
+      margin: 0.5rem 0;
+      color: white;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .stat-bento-card p {
+      color: #9aa0a6;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
 
-    /* Infra Card (Spans left side) */
-    .infra-card {
-      grid-column: 1 / 2;
-      grid-row: 1 / 3;
-      background: radial-gradient(circle at top left, rgba(60, 20, 90, 0.4), rgba(15, 10, 20, 0.9));
-      justify-content: center;
-    }
-    .infra-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 1.5rem;
-      font-size: 0.8rem;
-      color: #ccc;
-      letter-spacing: 1.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .infra-header .bx-server {
-      background: rgba(170, 0, 255, 0.15);
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 1.5rem;
-    }
-    .infra-footer {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 1.5rem;
-    }
-    .infra-tag {
-      background: rgba(255,255,255,0.08);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 0.8rem;
-      color: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-    .verified-tag {
-      margin-left: auto;
-      background: rgba(170, 0, 255, 0.15);
-      color: #aa00ff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      letter-spacing: 1px;
-    }
+    /* Infra Card (Spans left side) */
+    .infra-card {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+      background: radial-gradient(circle at top left, rgba(60, 20, 90, 0.4), rgba(15, 10, 20, 0.9));
+      justify-content: center;
+    }
+    .infra-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      color: #ccc;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .infra-header .bx-server {
+      background: rgba(170, 0, 255, 0.15);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.5rem;
+    }
+    .infra-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+    }
+    .infra-tag {
+      background: rgba(255,255,255,0.08);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .verified-tag {
+      margin-left: auto;
+      background: rgba(170, 0, 255, 0.15);
+      color: #aa00ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 1px;
+    }
 
-    /* Uptime Card (Top Right) */
-    .uptime-card {
-      grid-column: 2 / 3;
-      grid-row: 1 / 2;
-      justify-content: center;
-    }
-    .uptime-flex {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .circle-icon {
-      font-size: 2.5rem;
-      color: #00ff66 !important;
-      border: 3px solid #00ff66;
-      border-radius: 50%;
-      padding: 15px;
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-    }
-    .uptime-card h1 { font-size: 2.8rem; margin: 0 0 5px 0; }
-    .uptime-card p.guarantee { margin: 0; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #00ff66; text-transform: uppercase; }
-    .uptime-card p.small-text { color: #888; margin-top: 0.8rem; font-size: 0.85rem; }
+    /* Uptime Card (Top Right) */
+    .uptime-card {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      justify-content: center;
+    }
+    .uptime-flex {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .circle-icon {
+      font-size: 2.5rem;
+      color: #00ff66 !important;
+      border: 3px solid #00ff66;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+    .uptime-card h1 { font-size: 2.8rem; margin: 0 0 5px 0; }
+    .uptime-card p.guarantee { margin: 0; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #00ff66; text-transform: uppercase; }
+    .uptime-card p.small-text { color: #888; margin-top: 0.8rem; font-size: 0.85rem; }
 
-    /* Users Card (Bottom Right) */
-    .users-card {
-      grid-column: 2 / 3;
-      grid-row: 2 / 3;
-      justify-content: center;
-    }
-    .users-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    .users-flex .bx-user {
-      background: rgba(170, 0, 255, 0.15);
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 1.5rem;
-    }
-    .live-dot {
-      background: rgba(0, 255, 102, 0.1);
-      border: 1px solid rgba(0, 255, 102, 0.2);
-      color: #00ff66;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-    .dot-inner { 
-      width: 6px; 
-      height: 6px; 
-      background: #00ff66; 
-      border-radius: 50%; 
-      box-shadow: 0 0 8px #00ff66; 
-      animation: pulse 2s infinite; 
-    }
+    /* Users Card (Bottom Right) */
+    .users-card {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      justify-content: center;
+    }
+    .users-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .users-flex .bx-user {
+      background: rgba(170, 0, 255, 0.15);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.5rem;
+    }
+    .live-dot {
+      background: rgba(0, 255, 102, 0.1);
+      border: 1px solid rgba(0, 255, 102, 0.2);
+      color: #00ff66;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .dot-inner { 
+      width: 6px; 
+      height: 6px; 
+      background: #00ff66; 
+      border-radius: 50%; 
+      box-shadow: 0 0 8px #00ff66; 
+      animation: pulse 2s infinite; 
+    }
 
-    /* Songs Card (Bottom Full Width) */
-    .songs-card {
-      grid-column: 1 / 3;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 2.5rem;
-    }
-    .songs-content {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .songs-content .bx-music {
-      background: rgba(31, 191, 255, 0.15);
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 2rem;
-    }
-    .songs-content h1 { font-size: 2.8rem; margin: 0; display: inline-block; }
-    .songs-content p { margin: 0; font-size: 1rem; color: #aaa; margin-left: 10px;}
+    /* Songs Card (Bottom Full Width) */
+    .songs-card {
+      grid-column: 1 / 3;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 2.5rem;
+    }
+    .songs-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .songs-content .bx-music {
+      background: rgba(31, 191, 255, 0.15);
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 2rem;
+    }
+    .songs-content h1 { font-size: 2.8rem; margin: 0; display: inline-block; }
+    .songs-content p { margin: 0; font-size: 1rem; color: #aaa; margin-left: 10px;}
 
-    /* Animated Waveform */
-    .music-wave {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      height: 50px;
-    }
-    .bar {
-      width: 6px;
-      background: #1fbfff;
-      border-radius: 3px;
-      animation: wave 1s infinite ease-in-out;
-    }
-    .bar:nth-child(2) { background: #aa00ff; animation-delay: 0.1s; }
-    .bar:nth-child(3) { background: #ff003c; animation-delay: 0.2s; }
-    .bar:nth-child(4) { background: #1fbfff; animation-delay: 0.3s; }
-    .bar:nth-child(5) { background: #aa00ff; animation-delay: 0.4s; }
-    .bar:nth-child(6) { background: #ff003c; animation-delay: 0.5s; }
-    .bar:nth-child(7) { background: #1fbfff; animation-delay: 0.6s; }
-    .bar:nth-child(8) { background: #aa00ff; animation-delay: 0.7s; }
+    /* Animated Waveform */
+    .music-wave {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 50px;
+    }
+    .bar {
+      width: 6px;
+      background: #1fbfff;
+      border-radius: 3px;
+      animation: wave 1s infinite ease-in-out;
+    }
+    .bar:nth-child(2) { background: #aa00ff; animation-delay: 0.1s; }
+    .bar:nth-child(3) { background: #ff003c; animation-delay: 0.2s; }
+    .bar:nth-child(4) { background: #1fbfff; animation-delay: 0.3s; }
+    .bar:nth-child(5) { background: #aa00ff; animation-delay: 0.4s; }
+    .bar:nth-child(6) { background: #ff003c; animation-delay: 0.5s; }
+    .bar:nth-child(7) { background: #1fbfff; animation-delay: 0.6s; }
+    .bar:nth-child(8) { background: #aa00ff; animation-delay: 0.7s; }
 
-    @keyframes wave {
-      0%, 100% { height: 12px; }
-      50% { height: 45px; }
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.4); }
-      70% { box-shadow: 0 0 0 6px rgba(0, 255, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
-    }
+    @keyframes wave {
+      0%, 100% { height: 12px; }
+      50% { height: 45px; }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(0, 255, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+    }
 
-
-    /* --- Features Grid Styling to Match Performance --- */
-    #features {
-      padding: 2rem 2rem 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .feature-card.left-align {
-      align-items: flex-start;
-      text-align: left;
-      justify-content: center;
-    }
-    .feature-card.center-align {
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-    }
-
-    /* Headings & Text for Features */
-    .feature-card h2 { font-size: 2.2rem; color: white; margin-bottom: 1.5rem; font-weight: 800; }
-    .feature-card h3 { font-size: 1.8rem; color: white; margin-bottom: 0.5rem; font-weight: 700; }
-    .feature-card h4 { font-size: 1.3rem; color: white; margin-bottom: 0.5rem; font-weight: 700; }
-    .feature-card p { color: #9aa0a6; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; }
-    .feature-card p:last-child { margin-bottom: 0; }
-
-    /* Icons for Features */
-    .feature-icon-wrapper {
-      background: rgba(255, 77, 77, 0.08);
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      margin-bottom: 1.5rem;
-      color: #ff4d4d;
-      border: 1px solid rgba(255, 77, 77, 0.15);
-      box-shadow: 0 0 15px rgba(255, 77, 77, 0.1);
-    }
-
-    /* Spans both columns */
-    .feature-core { grid-column: 1 / 3; }
-
-    /* Core Features Tags */
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    
-    .skill-tag {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 12px 24px;
-      border-radius: 50px;
-      color: #ccc;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-    
-    .skill-tag i { color: #ff4d4d; font-size: 1.2rem; }
-    .skill-tag:hover {
-      background: rgba(255, 77, 77, 0.1);
-      border-color: #ff4d4d;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 900px) {
-      .stats-grid, .features-grid { grid-template-columns: 1fr; }
-      .infra-card, .uptime-card, .users-card, .songs-card, .feature-core { grid-column: 1 / 2; grid-row: auto; }
-      .songs-card { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .music-wave { align-self: flex-end; }
-    }
-  </style>
-</head>
+    /* Mobile Responsiveness */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .infra-card, .uptime-card, .users-card, .songs-card { grid-column: 1 / 2; grid-row: auto; }
+      .songs-card { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .music-wave { align-self: flex-end; }
+    }
+  </style>
+  </head>
 
 <body>
 
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
 
-  <div class="aurora-bg">
-    <div class="aurora-blob blob-1"></div>
-    <div class="aurora-blob blob-2"></div>
-    <div class="aurora-blob blob-3"></div>
-  </div>
+  <div class="aurora-bg">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+  </div>
 
-  <header class="header">
-    <a href="#" class="logo">MU<span>ZIX</span></a>
-    <i class="bx bx-menu" id="menu-icon"></i>
-    <nav class="navbar">
-      <a href="#home" class="active">Home</a>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
-      <a href="docs.html">Docs</a> 
-    </nav>
-  </header>
+  <header class="header">
+    <a href="#" class="logo">MU<span>ZIX</span></a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="docs.html">Docs</a> </nav>
+  </header>
 
-  <section id="home">
-    <div class="hero-bento">
-      <div class="bento-card hero-main" data-tilt>
-        <h3>Experience</h3>
-        <h1>MUZIX</h1>
-        <div class="text-animation"><span class="typed-text"></span><span class="cursor"
-            style="border-right: 3px solid var(--accent-secondary); animation: blink 1s infinite;">&nbsp;</span></div>
-        <p>Muzix isn’t just a music bot it’s a complete Discord music system with playback, playlists, and controls to upgrade your server’s vibe.</p>
-        <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+  <section id="home">
+    <div class="hero-bento">
+      <div class="bento-card hero-main" data-tilt>
+        <h3>Experience</h3>
+        <h1>MUZIX</h1>
+        <div class="text-animation"><span class="typed-text"></span><span class="cursor"
+            style="border-right: 3px solid var(--accent-secondary); animation: blink 1s infinite;">&nbsp;</span></div>
+        <p>Muzix isn’t just a music bot it’s a complete Discord music system with playback, playlists, and controls to upgrade your server’s vibe.</p>
+        <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
 
-          <a href="https://discord.com/oauth2/authorize?client_id=1328272164423729233&permissions=281474980236288&integration_type=0&scope=bot+applications.commands">
-            <span class="skill-tag"
-              style="display: inline-flex; background: rgba(139, 92, 246, 0.2); border-color: var(--accent-primary);">
-              <i class='bx bx-link-alt'></i> Invite Me
-            </span>
-          </a>
+          <a href="https://discord.com/oauth2/authorize?client_id=1328272164423729233&permissions=281474980236288&integration_type=0&scope=bot+applications.commands">
+            <span class="skill-tag"
+              style="display: inline-flex; background: rgba(139, 92, 246, 0.2); border-color: var(--accent-primary);">
+              <i class='bx bx-link-alt'></i> Invite Me
+            </span>
+          </a>
 
-          <a href="https://discord.com/invite/TVR4efd8ts" target="_blank">
-            <span class="skill-tag"
-              style="display: inline-flex; background: rgba(59, 130, 246, 0.2); border-color: #3b82f6;">
-              <i class='bx bxl-discord-alt'></i> Support Server
-            </span>
-          </a>
+          <a href="https://discord.com/invite/TVR4efd8ts" target="_blank">
+            <span class="skill-tag"
+              style="display: inline-flex; background: rgba(59, 130, 246, 0.2); border-color: #3b82f6;">
+              <i class='bx bxl-discord-alt'></i> Support Server
+            </span>
+          </a>
 
-          <a href="https://top.gg/bot/1328272164423729233/vote" target="_blank">
-            <span class="skill-tag"
-              style="display: inline-flex; background: rgba(16, 185, 129, 0.2); border-color: #10b981;">
-              <i class='bx bx-like'></i> Vote Me
-            </span>
-          </a>
+          <a href="https://top.gg/bot/1328272164423729233/vote" target="_blank">
+            <span class="skill-tag"
+              style="display: inline-flex; background: rgba(16, 185, 129, 0.2); border-color: #10b981;">
+              <i class='bx bx-like'></i> Vote Me
+            </span>
+          </a>
 
-        </div>
-      </div>
+        </div>
+      </div>
 
-      <div class="bento-card hero-img-card" data-tilt>
-        <img src="images/muzix_new.png" alt="Profile">
-      </div>
-    </div>
-  </section>
+      <div class="bento-card hero-img-card" data-tilt>
+        <img src="images/muzix_new.png" alt="Profile">
+      </div>
+    </div>
+  </section>
 
-  <section id="performance" class="performance-section">
-    <div class="performance-header">
-      <div class="badge-pill">
-        <div class="badge-icon"><i class='bx bxs-zap'></i></div>
-        <div>
-          <span class="badge-prefix">PERFORMANCE</span>
-          <span class="badge-text">Built for Scale & Speed</span>
-        </div>
-      </div>
-    </div>
+  <section id="performance" class="performance-section">
+    <div class="performance-header">
+      <div class="badge-pill">
+        <div class="badge-icon"><i class='bx bxs-zap'></i></div>
+        <div>
+          <span class="badge-prefix">PERFORMANCE</span>
+          <span class="badge-text">Built for Scale & Speed</span>
+        </div>
+      </div>
+    </div>
 
-    <div class="stats-grid">
-      <div class="stat-bento-card infra-card">
-        <div class="infra-header">
-          <i class='bx bx-server' style='color:#aa00ff'></i>
-          <span>GLOBAL INFRASTRUCTURE</span>
-        </div>
-        <h1>10k+<sup style='color:#aa00ff; font-size: 2rem;'>+</sup></h1>
-        <p>Active servers trusting our low-latency infrastructure daily.</p>
-        <div class="infra-footer">
-          <span class="infra-tag">DS</span>
-          <span class="infra-tag">GL</span>
-          <span class="infra-tag">+</span>
-          <span class="verified-tag">VERIFIED</span>
-        </div>
-      </div>
+    <div class="stats-grid">
+      <div class="stat-bento-card infra-card">
+        <div class="infra-header">
+          <i class='bx bx-server' style='color:#aa00ff'></i>
+          <span>GLOBAL INFRASTRUCTURE</span>
+        </div>
+        <h1>10k+<sup style='color:#aa00ff; font-size: 2rem;'>+</sup></h1>
+        <p>Active servers trusting our low-latency infrastructure daily.</p>
+        <div class="infra-footer">
+          <span class="infra-tag">DS</span>
+          <span class="infra-tag">GL</span>
+          <span class="infra-tag">+</span>
+          <span class="verified-tag">VERIFIED</span>
+        </div>
+      </div>
 
-      <div class="stat-bento-card uptime-card">
-        <div class="uptime-flex">
-          <i class='bx bx-pulse circle-icon'></i>
-          <div>
-            <h1>99.9%<sup style='color:#00ff66; font-size: 1.5rem;'>%</sup></h1>
-            <p class="guarantee">UPTIME GUARANTEE</p>
-          </div>
-        </div>
-        <p class="small-text">Zero lag. Always online.</p>
-      </div>
+      <div class="stat-bento-card uptime-card">
+        <div class="uptime-flex">
+          <i class='bx bx-pulse circle-icon'></i>
+          <div>
+            <h1>99.9%<sup style='color:#00ff66; font-size: 1.5rem;'>%</sup></h1>
+            <p class="guarantee">UPTIME GUARANTEE</p>
+          </div>
+        </div>
+        <p class="small-text">Zero lag. Always online.</p>
+      </div>
 
-      <div class="stat-bento-card users-card">
-        <div class="users-flex">
-          <i class='bx bx-user' style='color:#d500f9'></i>
-          <span class="live-dot"><span class="dot-inner"></span>LIVE</span>
-        </div>
-        <h1>999k+<sup style='color:#ff003c; font-size: 2rem;'>+</sup></h1>
-        <p>Happy Users Worldwide</p>
-      </div>
+      <div class="stat-bento-card users-card">
+        <div class="users-flex">
+          <i class='bx bx-user' style='color:#d500f9'></i>
+          <span class="live-dot"><span class="dot-inner"></span>LIVE</span>
+        </div>
+        <h1>999k+<sup style='color:#ff003c; font-size: 2rem;'>+</sup></h1>
+        <p>Happy Users Worldwide</p>
+      </div>
 
-      <div class="stat-bento-card songs-card">
-        <div class="songs-content">
-          <i class='bx bx-music' style='color:#1fbfff'></i>
-          <div>
-            <h1>100k++</h1>
-            <p>Songs Streamed Successfully</p>
-          </div>
-        </div>
-        <div class="music-wave">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="stat-bento-card songs-card">
+        <div class="songs-content">
+          <i class='bx bx-music' style='color:#1fbfff'></i>
+          <div>
+            <h1>100k++</h1>
+            <p>Songs Streamed Successfully</p>
+          </div>
+        </div>
+        <div class="music-wave">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="features">
+    <h2 class="heading">Bot <span>Features</span></h2>
 
-  <section id="features">
-    <div class="features-grid">
+    <div class="about-bento">
 
-      <div class="feature-card left-align" data-tilt>
-        <h2>The Music Engine.</h2>
-        <p>Muzix delivers a complete Discord music experience with seamless playback, powerful controls, and smart features designed to keep your server alive with nonstop vibes.</p>
-        <p>Built for performance, stability, and smooth user experience.</p>
-      </div>
+      <div class="bento-card about-intro" data-tilt>
+        <h2>The Music Engine.</h2>
+        <p>Muzix delivers a complete Discord music experience with seamless playback, powerful controls, and smart features designed to keep your server alive with nonstop vibes.</p>
+        <p>Built for performance, stability, and smooth user experience.</p>
+      </div>
 
-      <div class="feature-card center-align" data-tilt>
-        <div class="feature-icon-wrapper"><i class='bx bx-play-circle'></i></div>
-        <h4>24/7 Playback</h4>
-        <p>Always online, nonstop music streaming from any source.</p>
-      </div>
+      <div class="bento-card stats-card" data-tilt>
+        <i class='bx bx-play-circle'></i>
+        <h4>24/7 Playback</h4>
+        <p style="color: var(--text-muted); font-size: 1.4rem;">Always online, nonstop music streaming from any source</p>
+      </div>
 
-      <div class="feature-card center-align" data-tilt>
-        <div class="feature-icon-wrapper"><i class='bx bx-list-ul'></i></div>
-        <h4>Custom Playlists</h4>
-        <p>Create and manage your own custom music playlists.</p>
-      </div>
+      <div class="bento-card stats-card" data-tilt>
+        <i class='bx bx-list-ul'></i>
+        <h4>Custom Playlists</h4>
+        <p style="color: var(--text-muted); font-size: 1.4rem;">Create and manage your own playlists</p>
+      </div>
+      <div class="bento-card stats-card" data-tilt>
+        <i class='bx bx-slider'></i>
+        <h4>Audio Filters</h4>
+        <p style="color: var(--text-muted); font-size: 1.4rem;">
+          Enhance your music with bass boost, nightcore, and more
+        </p>
+      </div>
+      <div class="bento-card skills-card" data-tilt>
+        <h3 style="font-size: 2.4rem; margin-bottom: 1rem;">Core Features</h3>
+        <p style="font-size: 1.6rem; color: var(--text-muted);">Everything you need for the perfect music experience.</p>
+        <div class="skills-container">
+          <span class="skill-tag"><i class='bx bx-music'></i> High Quality Audio</span>
+          <span class="skill-tag"><i class='bx bx-fast-forward'></i> Fast Streaming</span>
+          <span class="skill-tag"><i class='bx bx-slider'></i> Audio Filters</span>
+          <span class="skill-tag"><i class='bx bx-command'></i> Slash Commands</span>
+          <span class="skill-tag"><i class='bx bx-globe'></i> Multi-Source</span>
+          <span class="skill-tag"><i class='bx bx-shield'></i> Stable & Reliable</span>
+        </div>
+      </div>
 
-      <div class="feature-card center-align" data-tilt>
-        <div class="feature-icon-wrapper"><i class='bx bx-slider'></i></div>
-        <h4>Audio Filters</h4>
-        <p>Enhance your music with bass boost, nightcore, and more.</p>
-      </div>
+    </div>
+  </section>
 
-      <div class="feature-card left-align feature-core" data-tilt>
-        <h3>Core Features</h3>
-        <p>Everything you need for the perfect music experience.</p>
-        
-        <div class="skills-container">
-          <span class="skill-tag"><i class='bx bx-music'></i> High Quality Audio</span>
-          <span class="skill-tag"><i class='bx bx-fast-forward'></i> Fast Streaming</span>
-          <span class="skill-tag"><i class='bx bx-slider'></i> Audio Filters</span>
-          <span class="skill-tag"><i class='bx bx-command'></i> Slash Commands</span>
-          <span class="skill-tag"><i class='bx bx-globe'></i> Multi-Source</span>
-          <span class="skill-tag"><i class='bx bx-shield'></i> Stable & Reliable</span>
-        </div>
-      </div>
+  <section id="about">
+    <h2 class="heading">Power Your <span>Server</span></h2>
 
-    </div>
-  </section>
+    <div class="social-grid">
 
-  <section id="about">
-    <h2 class="heading" style="text-align: center; color: white; margin-bottom: 3rem;">Power Your <span style="color: #aa00ff;">Server</span></h2>
+      <div class="bento-card social-card about-bot" data-tilt>
+        <i class="bx bx-music main-icon"></i>
+        <div>
+          <h4>About Muzix</h4>
+          <p>
+            Muzix is a next-generation, feature-rich Discord music bot engineered to deliver a seamless, immersive, and high-fidelity audio experience tailored for modern communities. Whether you're relaxing with friends or enjoying music solo, Muzix keeps the vibe alive with uninterrupted playback and precision control. It combines advanced streaming technology, intelligent queue management, customizable playlists, and powerful real-time controls to give you complete command over your music. Built for performance, stability, and speed, Muzix ensures smooth, lag-free playback with crystal-clear audio across multiple platforms and sources. With a focus on user experience and reliability, Muzix transforms your Discord server into a vibrant, interactive music hub where every beat, every transition, and every moment feels effortless and alive.
+          </p>
+        </div>
+      </div>
 
-    <div class="social-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
+      <div class="bento-card social-card" data-tilt>
+        <i class="bx bx-link-alt main-icon"></i>
+        <div>
+          <h4>Invite Muzix</h4>
+          <p>Add the bot to your server</p>
+        </div>
+        <a href="https://discord.com/oauth2/authorize?client_id=1328272164423729233&permissions=281474980236288&integration_type=0&scope=bot+applications.commands" target="_blank" class="btn-icon">
+          <i class="bx bx-right-arrow-alt"></i>
+        </a>
+      </div>
 
-      <div class="feature-card center-align" data-tilt style="grid-column: 1 / -1; padding: 3rem;">
-        <i class="bx bx-music feature-icon-wrapper" style="margin: 0 auto 1.5rem auto;"></i>
-        <h4>About Muzix</h4>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-          Muzix is a next-generation, feature-rich Discord music bot engineered to deliver a seamless, immersive, and high-fidelity audio experience tailored for modern communities. Whether you're relaxing with friends or enjoying music solo, Muzix keeps the vibe alive with uninterrupted playback and precision control. It combines advanced streaming technology, intelligent queue management, customizable playlists, and powerful real-time controls to give you complete command over your music.
-        </p>
-      </div>
+      <div class="bento-card social-card" data-tilt>
+        <i class="bx bxl-discord-alt main-icon"></i>
+        <div>
+          <h4>Support Server</h4>
+          <p>Join the Muzix HQ</p>
+        </div>
+        <a href="https://discord.com/invite/TVR4efd8ts" target="_blank" class="btn-icon">
+          <i class="bx bx-right-arrow-alt"></i>
+        </a>
+      </div>
 
-    </div>
-  </section>
+      <div class="bento-card social-card" data-tilt>
+        <i class="bx bx-like main-icon"></i>
+        <div>
+          <h4>Vote for Muzix</h4>
+          <p>Support us on bot lists</p>
+        </div>
+        <a href="https://top.gg/bot/1328272164423729233/vote" target="_blank" class="btn-icon">
+          <i class="bx bx-right-arrow-alt"></i>
+        </a>
+      </div>
 
-  <footer class="footer" id="footer" style="padding: 3rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem;">
-    <p style="color: var(--text-muted, #888); font-size: 1rem;">
-      Copyright © 2026 Muzix | 
-      <a href="docs.html" style="color: #aa00ff; text-decoration: none; font-weight: bold; margin: 0 5px;">Docs</a> |
-      <a href="docs.html#terms" style="color: #aa00ff; text-decoration: none; font-weight: bold; margin: 0 5px;">Terms of Service</a> |
-      <a href="docs.html#privacy" style="color: #aa00ff; text-decoration: none; font-weight: bold; margin-left: 5px;">Privacy Policy</a>
-    </p>
-  </footer>
+    </div>
+  </section>
 
-  <script src="js/script.js"></script>
+  <footer class="footer" id="footer" style="padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+    <p style="color: var(--text-muted, #888); font-size: 1.4rem;">
+      Copyright © 2026 Muzix | 
+      <a href="docs.html" style="color: var(--premium-red, #ff4d4d); text-decoration: none; font-weight: bold; margin: 0 5px;">Docs</a> |
+      <a href="docs.html#terms" style="color: var(--premium-red, #ff4d4d); text-decoration: none; font-weight: bold; margin: 0 5px;">Terms of Service</a> |
+      <a href="docs.html#privacy" style="color: var(--premium-red, #ff4d4d); text-decoration: none; font-weight: bold; margin-left: 5px;">Privacy Policy</a>
+    </p>
+  </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 
