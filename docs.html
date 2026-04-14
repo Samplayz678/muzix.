@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muzix | Documentation</title>
+  <link href="css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="images/muzix_new.png">
+  <meta name="description" content="Documentation, Privacy Policy, and Terms of Service for the Muzix Discord bot.">
+
+  <style>
+    #docs-section {
+      padding: 120px 10% 50px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .docs-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .docs-header h2 {
+      font-size: 3rem;
+      color: #fff;
+    }
+    
+    .docs-header span {
+      color: #5865F2; /* Discord Blue Accent */
+    }
+
+    .docs-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    details {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    details:hover {
+      border-color: rgba(88, 101, 242, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    summary {
+      padding: 1.5rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary i {
+      font-size: 1.5rem;
+      color: #5865F2;
+      transition: transform 0.3s ease;
+    }
+
+    details[open] summary i {
+      transform: rotate(180deg);
+    }
+
+    .details-content {
+      padding: 0 2rem 2rem 2rem;
+      color: #b3b3b3;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .details-content h3 {
+      color: #fff;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .details-content ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .details-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .details-content a {
+      color: #5865F2;
+      text-decoration: none;
+    }
+    
+    .details-content a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <div class="aurora-bg">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+  </div>
+
+  <header class="header">
+    <a href="index.html" class="logo">MU<span>ZIX</span></a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#about">About</a>
+      <a href="#" class="active">Docs</a>
+    </nav>
+  </header>
+
+  <section id="docs-section">
+    <div class="docs-header">
+      <h2>Documentation <span>& Legal</span></h2>
+      <p style="color: #b3b3b3; font-size: 1.2rem; margin-top: 10px;">Everything you need to know about how Muzix works.</p>
+    </div>
+
+    <div class="docs-container">
+
+      <details>
+        <summary>Introduction & Guide <i class='bx bx-chevron-down'></i></summary>
+        <div class="details-content">
+          <p>Welcome to <strong>Muzix</strong>! We are a next-generation music bot built to provide the highest quality audio experience directly inside your Discord server.</p>
+          <h3>How to Get Started</h3>
+          <ul>
+            <li><strong>Invite the Bot:</strong> Use the invite button on our home page to add Muzix to your server. Make sure it has permissions to View Channels, Send Messages, Connect, and Speak.</li>
+            <li><strong>Commands:</strong> Join a voice channel and use our slash commands (e.g., <code>/play [song name]</code>) to start listening immediately.</li>
+            <li><strong>No-Prefix System:</strong> Certain users and servers can be granted "no-prefix" status, allowing them to type song names directly without needing a command prefix.</li>
+          </ul>
+          <h3>Key Systems</h3>
+          <p>Muzix utilizes advanced Lavalink nodes to ensure 24/7 uptime, lag-free streaming, and automatic node-relocation if a disruption occurs. We also feature an auto-resume function so your music picks right back up where it left off.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Terms of Service <i class='bx bx-chevron-down'></i></summary>
+        <div class="details-content">
+          <p><strong>Last Updated:</strong> April 14, 2026</p>
+          <p>By inviting and using Muzix in your Discord server, you agree to these terms:</p>
+          <h3>1. Usage Rules</h3>
+          <ul>
+            <li>You may not use Muzix to play audio that violates Discord's Community Guidelines or Terms of Service.</li>
+            <li>Intentional abuse, spamming of commands, or attempts to crash/exploit the bot's infrastructure will result in a permanent ban from using our services.</li>
+          </ul>
+          <h3>2. Service Availability</h3>
+          <p>We strive for 24/7 uptime, but Muzix is provided "as is". We do not guarantee uninterrupted service and are not responsible for temporary outages due to maintenance, node disruptions, or Discord API limitations.</p>
+          <h3>3. Liability</h3>
+          <p>The developers of Muzix are not responsible for the content played through the bot by users, nor are we liable for any disruptions in your Discord server caused by the bot's usage.</p>
+          <h3>4. Changes to Terms</h3>
+          <p>We reserve the right to update these terms at any time. Continued use of the bot after changes are made constitutes acceptance of the new terms.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Privacy Policy <i class='bx bx-chevron-down'></i></summary>
+        <div class="details-content">
+          <p><strong>Last Updated:</strong> April 14, 2026</p>
+          <p>This Privacy Policy explains how Muzix collects, uses, and protects information gathered from Discord.</p>
+          
+          <h3>1. Information We Collect</h3>
+          <ul>
+            <li><strong>Discord IDs:</strong> Server (Guild) IDs, Voice/Text Channel IDs, and User IDs.</li>
+            <li><strong>No-Prefix User Data:</strong> If granted "no-prefix" privileges, we store your specific Discord User ID in our database.</li>
+            <li><strong>Voice State Data:</strong> Information regarding user presence in voice channels.</li>
+            <li><strong>Message Content:</strong> If communicating via text commands, the bot reads the message to execute your request.</li>
+          </ul>
+
+          <h3>2. How We Use Your Information</h3>
+          <p>Data is strictly used to operate the bot. User IDs saved for "no-prefix" status are checked against incoming messages. Voice state data and User IDs track requests and facilitate features like auto-resume and node relocation. Server and Voice Channel IDs are required to establish audio connections through our Lavalink nodes.</p>
+
+          <h3>3. Data Storage and Retention</h3>
+          <ul>
+            <li><strong>Persistent Data:</strong> Data necessary for continuous features (like your User ID for "no-prefix" privileges) is stored securely until revoked or deletion is requested.</li>
+            <li><strong>Temporary Data:</strong> Active music queues and voice channel states are held in memory and cleared once playback ends.</li>
+          </ul>
+
+          <h3>4. Your Rights</h3>
+          <p>Users and server administrators have the right to request the deletion of any persistent data associated with them. To request removal, join our Support Server.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Copyright © 2026 Muzix | <a href="docs.html" style="color: #5865F2; text-decoration: none; font-weight: bold; margin-left: 5px;">Docs & Privacy</a></p>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
