@@ -587,6 +587,29 @@ section {
   transform: scale(1.1);
 }
 
+/* --- Smooth Dropdown Animation for Docs --- */
+.details-content {
+  /* Closed state */
+  max-height: 0;
+  opacity: 0;
+  padding: 0 4rem; 
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+}
+
+/* Open state */
+details[open]:not(.is-closing) .details-content {
+  max-height: 2000px; /* Provides enough room to expand seamlessly */
+  opacity: 1;
+  padding: 0 4rem 4rem 4rem; 
+}
+
+/* Rotating arrow animation */
+details[open]:not(.is-closing) summary i {
+  transform: rotate(180deg);
+}
+
+
 /* --- Footer --- */
 .footer {
   text-align: center;
@@ -598,7 +621,7 @@ section {
 }
 
 /* ========================================================================= */
-/* MOBILE RESPONSIVE RULES                           */
+/* MOBILE RESPONSIVE RULES                                                   */
 /* ========================================================================= */
 
 /* Touch Devices: Hide custom cursor */
@@ -666,7 +689,11 @@ section {
   .docs-header p { font-size: 1.4rem !important; }
   summary { padding: 1.5rem; font-size: 1.6rem; }
   summary i { font-size: 1.8rem; }
-  .details-content { padding: 0 2rem 2rem 2rem; }
+  
+  /* OVERRIDE: Keep closed padding tight, but open padding properly spaced */
+  .details-content { padding: 0 2rem; } 
+  details[open]:not(.is-closing) .details-content { padding: 0 2rem 2rem 2rem; }
+  
   .details-content h3 { font-size: 2rem; margin-top: 1.5rem; }
   .details-content p, .details-content li { font-size: 1.4rem; }
 
