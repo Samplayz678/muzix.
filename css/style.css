@@ -387,12 +387,8 @@ section {
 }
 
 @keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* --- About Dense Bento Grid --- */
@@ -415,21 +411,16 @@ section {
   grid-row: 1 / 2;
 }
 
-/* 🔥 FIX: Bottom row equal layout */
+/* Bottom row equal layout */
 .stats-card:nth-of-type(3),
 .stats-card:nth-of-type(4) {
   grid-row: 2 / 3;
 }
 
 /* Custom Playlist (left) */
-.stats-card:nth-of-type(3) {
-  grid-column: 1 / 2;
-}
-
+.stats-card:nth-of-type(3) { grid-column: 1 / 2; }
 /* Audio Filters (right) */
-.stats-card:nth-of-type(4) {
-  grid-column: 2 / 3;
-}
+.stats-card:nth-of-type(4) { grid-column: 2 / 3; }
 
 /* Core Features full width */
 .skills-card {
@@ -504,6 +495,7 @@ section {
   border-color: var(--accent-primary);
   transform: translateY(-5px);
 }
+
 /* --- Socials Stack --- */
 .social-grid {
   display: grid;
@@ -511,13 +503,13 @@ section {
   gap: 2rem;
 }
 
-/* 🔥 About Muzix (full width top - centered + better spacing) */
+/* About Muzix */
 .about-bot {
   grid-column: 1 / 4;
   text-align: center;
   align-items: center;
   justify-content: center;
-  padding: 5rem 3rem; /* 🔥 more breathing space */
+  padding: 5rem 3rem; 
 }
 
 /* Card base */
@@ -536,24 +528,19 @@ section {
   text-align: center;
 }
 
-/* 🔥 About text improved readability */
+/* About text */
 .about-bot p {
   font-size: 1.6rem;
   color: var(--text-muted);
-  max-width: 700px;      /* 🔥 better width */
+  max-width: 700px;      
   margin: 0 auto;
-  line-height: 1.8;      /* 🔥 key fix */
+  line-height: 1.8;      
 }
 
 /* spacing between paragraphs */
-.about-bot p + p {
-  margin-top: 1.2rem;
-}
-
+.about-bot p + p { margin-top: 1.2rem; }
 /* spacing under heading */
-.about-bot h4 {
-  margin-top: 1rem;
-}
+.about-bot h4 { margin-top: 1rem; }
 
 /* Icons */
 .social-card i.main-icon {
@@ -599,6 +586,7 @@ section {
   color: #fff;
   transform: scale(1.1);
 }
+
 /* --- Footer --- */
 .footer {
   text-align: center;
@@ -609,18 +597,37 @@ section {
   color: var(--text-muted);
 }
 
-/* Responsive */
-@media(max-width: 1024px) {
-  .hero-bento { grid-template-columns: 1fr; }
-  .hero-img-card { height: 400px; }
-  .about-bento { grid-template-columns: 1fr 1fr; }
-  .about-intro { grid-column: span 2; }
-  .skills-card { grid-column: span 2; }
-  .social-grid { grid-template-columns: repeat(2, 1fr); }
+/* ========================================================================= */
+/* MOBILE RESPONSIVE RULES                           */
+/* ========================================================================= */
+
+/* Touch Devices: Hide custom cursor */
+@media (pointer: coarse) {
+  * { cursor: auto; }
+  .cursor-dot, .cursor-outline { display: none; }
 }
 
-@media(max-width: 768px) {
-  .header { width: 95%; top: 10px; padding: 1.5rem 2rem; }
+/* --- TABLETS (Max 1024px) --- */
+@media (max-width: 1024px) {
+  .hero-bento { grid-template-columns: 1fr; }
+  .hero-img-card { height: 300px; }
+  
+  .about-bento { grid-template-columns: 1fr; }
+  .about-intro, .stats-card, .skills-card { 
+    grid-column: auto !important; 
+    grid-row: auto !important; 
+  }
+  
+  .social-grid { grid-template-columns: 1fr; }
+  .about-bot { grid-column: auto !important; }
+}
+
+/* --- SMALL DEVICES & PHONES (Max 768px) --- */
+@media (max-width: 768px) {
+  html { font-size: 55%; }
+  
+  /* Header & Nav */
+  .header { width: 95%; top: 10px; padding: 1.2rem 2rem; }
   #menu-icon { display: block; cursor: pointer; }
   .navbar {
     position: absolute;
@@ -637,164 +644,43 @@ section {
   .navbar.active { display: flex; }
   .navbar a { margin: 0; font-size: 2rem; }
   
-  .hero-main h1 { font-size: 5rem; }
-  .about-bento { grid-template-columns: 1fr; }
-  .about-intro, .skills-card { grid-column: span 1; }
-  .social-grid { grid-template-columns: 1fr; }
+  /* Sections & Layout */
   section { padding: 12rem 5% 4rem; }
-}
-
-@media(pointer: coarse) {
-  /* Hide custom cursor on touch devices */
-  * { cursor: auto; }
-  .cursor-dot, .cursor-outline { display: none; }
-}
-
-
-/* ================= MOBILE RESPONSIVE ================= */
-
-@media (max-width: 1024px) {
-
+  .bento-card { padding: 2.5rem; }
+  
   /* Hero */
-  .hero-bento {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-img-card {
-    height: 300px;
-  }
-
-  /* About Section */
-  .about-bento {
-    grid-template-columns: 1fr;
-  }
-
-  .about-intro,
-  .stats-card,
-  .skills-card {
-    grid-column: auto !important;
-    grid-row: auto !important;
-  }
-
-  /* Social Section */
-  .social-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-bot {
-    grid-column: auto !important;
-  }
-}
-
-
-/* ================= SMALL DEVICES ================= */
-
-@media (max-width: 768px) {
-
-  html {
-    font-size: 55%; /* slightly smaller text */
-  }
-
-  /* Header */
-  .header {
-    width: 95%;
-    padding: 1.2rem 2rem;
-  }
-
-  #menu-icon {
-    display: block;
-  }
-
-  .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 2rem;
-    flex-direction: column;
-    display: none;
-    gap: 2rem;
-    border: 1px solid var(--glass-border);
-  }
-
-  .navbar.active {
-    display: flex;
-  }
-
-  .navbar a {
-    font-size: 2rem;
-    margin: 0;
-  }
-
-  /* Hero Text */
-  .hero-main h1 {
-    font-size: 4rem;
-  }
-
-  .hero-main .text-animation {
-    font-size: 2rem;
-  }
-
-  .hero-main p {
-    font-size: 1.6rem;
-  }
-
-  /* Buttons wrap nicely */
-  .hero-main div[style*="flex"] {
-    justify-content: center;
-  }
-
+  .hero-main h1 { font-size: 4rem; }
+  .hero-main .text-animation { font-size: 2rem; }
+  .hero-main p { font-size: 1.6rem; }
+  .hero-main div[style*="flex"] { justify-content: center; } /* Centers buttons if inline flex is used */
+  
   /* Marquee */
-  .marquee-content span {
-    font-size: 2rem;
-  }
-
-  /* Cards */
-  .bento-card {
-    padding: 2.5rem;
-  }
-
-  /* About text */
-  .about-bot p {
-    font-size: 1.5rem;
-    line-height: 1.7;
-  }
+  .marquee-content span { font-size: 2rem; }
+  
+  /* About / Social */
+  .about-bot p { font-size: 1.5rem; line-height: 1.7; }
+  
+  /* Docs Page Specific Scaling */
+  #docs-section { padding: 100px 5% 40px; }
+  .docs-header h2 { font-size: 3rem; }
+  .docs-header p { font-size: 1.4rem !important; }
+  summary { padding: 1.5rem; font-size: 1.6rem; }
+  summary i { font-size: 1.8rem; }
+  .details-content { padding: 0 2rem 2rem 2rem; }
+  .details-content h3 { font-size: 2rem; margin-top: 1.5rem; }
+  .details-content p, .details-content li { font-size: 1.4rem; }
 
   /* Footer */
-  .footer {
-    font-size: 1.4rem;
-    padding: 3rem 2rem;
-  }
+  .footer { font-size: 1.4rem; padding: 3rem 2rem; }
 }
 
-
-/* ================= EXTRA SMALL (PHONES) ================= */
-
+/* --- EXTRA SMALL (Max 480px) --- */
 @media (max-width: 480px) {
-
-  html {
-    font-size: 50%;
-  }
-
-  .hero-main h1 {
-    font-size: 3.2rem;
-  }
-
-  .heading {
-    font-size: 3rem;
-  }
-
-  .social-card i.main-icon {
-    font-size: 4.5rem;
-  }
-
-  .btn-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 2rem;
-  }
-
+  html { font-size: 50%; }
+  
+  .hero-main h1 { font-size: 3.2rem; }
+  .heading { font-size: 3rem; }
+  
+  .social-card i.main-icon { font-size: 4.5rem; }
+  .btn-icon { width: 45px; height: 45px; font-size: 2rem; }
 }
