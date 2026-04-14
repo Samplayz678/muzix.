@@ -31,7 +31,7 @@
     }
     
     .docs-header h2 {
-      font-size: 4.2rem; /* Increased size */
+      font-size: 4.2rem;
       color: #fff;
       text-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
@@ -42,7 +42,7 @@
     }
 
     .docs-container {
-      max-width: 1000px; /* Made slightly wider to fit bigger text */
+      max-width: 1000px; 
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -72,7 +72,7 @@
 
     summary {
       padding: 2rem 2.5rem;
-      font-size: 2.1rem; /* Increased size */
+      font-size: 2.1rem;
       font-weight: 700;
       color: #fff;
       cursor: pointer;
@@ -88,7 +88,7 @@
     }
 
     summary i {
-      font-size: 2.4rem; /* Increased size */
+      font-size: 2.4rem;
       color: var(--premium-red);
       transition: transform 0.4s ease;
       filter: drop-shadow(0 0 8px var(--premium-red-glow));
@@ -98,33 +98,58 @@
       transform: rotate(180deg);
     }
 
+    /* === UPDATED: Clean, Big, Trustworthy Typography === */
     .details-content {
-      padding: 0 2.5rem 2.5rem 2.5rem;
-      color: #cccccc;
-      font-size: 1.5rem; /* Increased size significantly for better readability */
-      line-height: 1.9; /* Adjusted line height for bigger text */
+      padding: 0 4rem 4rem 4rem; /* Increased padding for cleaner look */
+    }
+
+    .last-updated {
+      text-align: center;
+      color: #94a3b8; /* Muted gray/blue */
+      font-size: 1.4rem;
+      margin-bottom: 3rem !important;
+      font-weight: 500;
     }
 
     .details-content h3 {
       color: #fff;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      font-size: 1.8rem; /* Increased size */
-      border-left: 5px solid var(--premium-red);
-      padding-left: 12px;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+      font-size: 2.4rem; /* Big and bold like the image */
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
+    .details-content p {
+      color: #cbd5e1; /* Slate color for readability */
+      font-size: 1.6rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    /* Custom List styling to match the screenshot */
     .details-content ul {
-      margin-left: 2rem;
-      margin-bottom: 1.5rem;
+      list-style-type: none;
+      margin-left: 0;
+      margin-bottom: 2.5rem;
     }
     
     .details-content li {
-      margin-bottom: 1rem;
+      color: #cbd5e1;
+      font-size: 1.6rem;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
     }
-    
-    .details-content p {
-      margin-bottom: 1.8rem;
+
+    /* Creating the clean '•' bullet point */
+    .details-content li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #cbd5e1;
+      font-weight: bold;
     }
     
     .details-content a {
@@ -137,6 +162,19 @@
     .details-content a:hover {
       text-decoration: underline;
       text-shadow: 0 0 10px var(--premium-red-glow);
+    }
+
+    /* Mobile fix for the updated padding */
+    @media (max-width: 768px) {
+      .details-content {
+        padding: 0 2rem 2rem 2rem;
+      }
+      .details-content h3 {
+        font-size: 2rem;
+      }
+      .details-content p, .details-content li {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
@@ -171,7 +209,7 @@
 
     <div class="docs-container">
 
-      <details>
+      <details id="about">
         <summary>About Muzix <i class='bx bx-chevron-down'></i></summary>
         <div class="details-content">
           <p><strong>Muzix</strong> is a next-generation, feature-rich Discord music bot engineered to deliver a seamless, immersive, and high-fidelity audio experience tailored for modern communities.</p>
@@ -180,7 +218,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="features">
         <summary>Core Features <i class='bx bx-chevron-down'></i></summary>
         <div class="details-content">
           <p>Muzix is packed with premium features designed to give your server the ultimate audio experience:</p>
@@ -195,7 +233,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="guide">
         <summary>Introduction & Guide <i class='bx bx-chevron-down'></i></summary>
         <div class="details-content">
           <h3>How to Get Started</h3>
@@ -207,50 +245,70 @@
         </div>
       </details>
 
-     <details id="terms">
+      <details id="terms">
         <summary>Terms of Service <i class='bx bx-chevron-down'></i></summary>
         <div class="details-content">
-          <p><strong>Last Updated:</strong> April 14, 2026</p>
-          <p>By inviting and using Muzix in your Discord server, you agree to these terms:</p>
-          <h3>1. Usage Rules</h3>
+          <p class="last-updated">Last updated: April 14, 2026</p>
+          
+          <h3>1. Acceptance of Terms</h3>
+          <p>By accessing or using Muzix ("the Bot"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Bot or invite it to your server.</p>
+          
+          <h3>2. Description of Service</h3>
+          <p>Muzix is a Discord music bot that provides high-fidelity audio streaming, playlist management, and audio effects for Discord servers. The service is provided "as is" and may be updated, modified, or discontinued at any time without prior notice to the users.</p>
+
+          <h3>3. User Responsibilities</h3>
+          <p>Users must adhere to the following guidelines while operating Muzix:</p>
           <ul>
-            <li>You may not use Muzix to play audio that violates Discord's Community Guidelines or Terms of Service.</li>
-            <li>Intentional abuse, spamming of commands, or attempts to crash/exploit the bot's infrastructure will result in a permanent ban from using our services.</li>
+            <li>Comply with Discord's Terms of Service and Community Guidelines.</li>
+            <li>Not use the Bot for any illegal activities, harassment, or malicious intent.</li>
+            <li>Not attempt to exploit, hack, reverse-engineer, or misuse the Bot's infrastructure.</li>
+            <li>Not use the Bot to stream copyrighted content without proper authorization.</li>
+            <li>Respect rate limits and fair usage policies to ensure stability for all users globally.</li>
           </ul>
-          <h3>2. Service Availability</h3>
-          <p>We strive for 24/7 uptime, but Muzix is provided "as is". We do not guarantee uninterrupted service and are not responsible for temporary outages due to maintenance, node disruptions, or Discord API limitations.</p>
-          <h3>3. Liability</h3>
-          <p>The developers of Muzix are not responsible for the content played through the bot by users, nor are we liable for any disruptions in your Discord server caused by the bot's usage.</p>
-          <h3>4. Changes to Terms</h3>
-          <p>We reserve the right to update these terms at any time. Continued use of the bot after changes are made constitutes acceptance of the new terms.</p>
+
+          <h3>4. Premium Services</h3>
+          <p>Certain advanced features of Muzix are offered on a subscription basis. By purchasing a premium tier:</p>
+          <ul>
+            <li>You agree to pay the specified fees associated with your chosen tier.</li>
+            <li>You understand that perks are tied to your specific Discord ID or Server ID.</li>
+            <li>Refunds are processed strictly at the discretion of the Muzix administration team and are generally not provided for partially used billing periods.</li>
+          </ul>
+
+          <h3>5. Limitation of Liability</h3>
+          <p>Muzix and its developers shall not be held liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or inability to use the service. We do not guarantee 100% uptime and are not responsible for damages resulting from node outages or Discord API disruptions.</p>
+
+          <h3>6. Termination</h3>
+          <p>We reserve the right to restrict, suspend, or terminate your access to Muzix at our sole discretion, without notice, for conduct that we believe violates these Terms of Service or is harmful to other users, us, or third parties.</p>
         </div>
       </details>
 
       <details id="privacy">
         <summary>Privacy Policy <i class='bx bx-chevron-down'></i></summary>
         <div class="details-content">
-          <p><strong>Last Updated:</strong> April 14, 2026</p>
-          <p>This Privacy Policy explains how Muzix collects, uses, and protects information gathered from Discord.</p>
+          <p class="last-updated">Last updated: April 14, 2026</p>
           
           <h3>1. Information We Collect</h3>
+          <p>To provide a seamless experience, Muzix collects specific, non-invasive data from Discord:</p>
           <ul>
-            <li><strong>Discord IDs:</strong> Server (Guild) IDs, Voice/Text Channel IDs, and User IDs.</li>
-            <li><strong>No-Prefix User Data:</strong> If granted "no-prefix" privileges, we store your specific Discord User ID in our database.</li>
-            <li><strong>Voice State Data:</strong> Information regarding user presence in voice channels.</li>
-            <li><strong>Message Content:</strong> If communicating via text commands, the bot reads the message to execute your request.</li>
+            <li><strong>Discord IDs:</strong> Server (Guild) IDs, Voice/Text Channel IDs, and User IDs are collected to execute commands and route audio.</li>
+            <li><strong>Premium Data:</strong> If granted premium or "no-prefix" privileges, we store your specific Discord User/Guild ID securely in our database.</li>
+            <li><strong>Voice State Data:</strong> Temporary information regarding user presence in voice channels to manage playback and auto-disconnect features.</li>
+            <li><strong>Message Content:</strong> The bot temporarily reads message content solely to execute text commands. We do not log or store chat history.</li>
           </ul>
 
           <h3>2. How We Use Your Information</h3>
-          <p>Data is strictly used to operate the bot. User IDs saved for "no-prefix" status are checked against incoming messages. Voice state data and User IDs track requests and facilitate features like auto-resume and node relocation. Server and Voice Channel IDs are required to establish audio connections through our Lavalink nodes.</p>
+          <p>We strictly utilize the collected data to operate, maintain, and improve the Bot. User IDs saved for premium status are checked against incoming requests. Voice state data tracks queues and facilitates features like auto-resume and host-node relocation. Server and Channel IDs are strictly used to establish audio connections via our Lavalink nodes.</p>
 
-          <h3>3. Data Storage and Retention</h3>
+          <h3>3. Data Storage and Security</h3>
+          <p>We implement industry-standard security measures to protect your data:</p>
           <ul>
-            <li><strong>Persistent Data:</strong> Data necessary for continuous features (like your User ID for "no-prefix" privileges) is stored securely until revoked or deletion is requested.</li>
-            <li><strong>Temporary Data:</strong> Active music queues and voice channel states are held in memory and cleared once playback ends.</li>
+            <li><strong>Persistent Data:</strong> Information necessary for continuous features (e.g., Premium User IDs, Custom Playlists) is stored securely in encrypted databases until revoked or deletion is requested.</li>
+            <li><strong>Temporary Data:</strong> Active music queues and voice channel states are held in volatile memory (RAM) and are permanently cleared once playback concludes or the bot disconnects.</li>
+            <li>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</li>
           </ul>
 
-          <h3>4. Your Rights</h3>
-          <p>Users and server administrators have the right to request the deletion of any persistent data associated with them. To request removal, join our Support Server.</p>
+          <h3>4. Your Rights and Data Deletion</h3>
+          <p>Under global privacy standards, users and server administrators have the right to request the complete deletion of any persistent data associated with them (such as custom saved playlists). To request data removal, please open a ticket in our official Support Server. Data will be purged within 30 days of the request.</p>
         </div>
       </details>
 
@@ -258,10 +316,43 @@
   </section>
 
   <footer class="footer">
-    <p>Copyright © 2026 Muzix | <a href="docs.html" style="color: var(--premium-red); text-decoration: none; font-weight: bold; margin-left: 5px;">Docs & Privacy</a></p>
+    <p>
+      Copyright © 2026 Muzix | 
+      <a href="#" style="color: var(--premium-red); text-decoration: none; font-weight: bold; margin: 0 5px;">Docs</a> |
+      <a href="#terms" style="color: var(--premium-red); text-decoration: none; font-weight: bold; margin: 0 5px;">Terms of Service</a> |
+      <a href="#privacy" style="color: var(--premium-red); text-decoration: none; font-weight: bold; margin-left: 5px;">Privacy Policy</a>
+    </p>
   </footer>
 
   <script src="js/script.js"></script>
+  
+  <script>
+    function openTargetDetails() {
+      // Get the hash from the URL (e.g., "#terms")
+      const hash = window.location.hash;
+      
+      if (hash) {
+        // Find the element with that ID
+        const targetElement = document.querySelector(hash);
+        
+        // If it exists and is a <details> tag, open it
+        if (targetElement && targetElement.tagName === 'DETAILS') {
+          targetElement.setAttribute('open', '');
+          
+          // Smooth scroll to the section so the user sees it
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+
+    // Run when the page first loads
+    window.addEventListener('DOMContentLoaded', openTargetDetails);
+    
+    // Run if the user clicks a hash link while already on the page (like your footer links)
+    window.addEventListener('hashchange', openTargetDetails);
+  </script>
 
 </body>
 </html>
