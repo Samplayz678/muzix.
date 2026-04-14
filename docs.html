@@ -13,6 +13,11 @@
   <meta name="description" content="Documentation, Privacy Policy, and Terms of Service for the Muzix Discord bot.">
 
   <style>
+    :root {
+      --premium-red: #ff2a2a;
+      --premium-red-glow: rgba(255, 42, 42, 0.2);
+    }
+
     #docs-section {
       padding: 120px 10% 50px;
       min-height: 100vh;
@@ -22,50 +27,60 @@
     
     .docs-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
     }
     
     .docs-header h2 {
-      font-size: 3rem;
+      font-size: 3.8rem; /* Made bigger */
       color: #fff;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
     
     .docs-header span {
-      color: #5865F2; /* Discord Blue Accent */
+      color: var(--premium-red); 
+      text-shadow: 0 0 20px var(--premium-red-glow);
     }
 
     .docs-container {
-      max-width: 900px;
+      max-width: 950px; /* Made slightly wider */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
+    /* 3D Premium Glassmorphism Cards */
     details {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.3) 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      border-right: 1px solid rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy 3D transition */
       overflow: hidden;
     }
 
     details:hover {
-      border-color: rgba(88, 101, 242, 0.5);
-      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-5px); /* Floats up on hover */
+      border-color: rgba(255, 42, 42, 0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--premium-red-glow), inset 0 1px 0 rgba(255,255,255,0.1);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0.4) 100%);
     }
 
     summary {
-      padding: 1.5rem 2rem;
-      font-size: 1.5rem;
-      font-weight: 600;
+      padding: 1.8rem 2.5rem;
+      font-size: 1.8rem; /* Made bigger */
+      font-weight: 700;
       color: #fff;
       cursor: pointer;
       list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      letter-spacing: 0.5px;
     }
 
     summary::-webkit-details-marker {
@@ -73,9 +88,10 @@
     }
 
     summary i {
-      font-size: 1.5rem;
-      color: #5865F2;
-      transition: transform 0.3s ease;
+      font-size: 2rem; /* Bigger icon */
+      color: var(--premium-red);
+      transition: transform 0.4s ease;
+      filter: drop-shadow(0 0 8px var(--premium-red-glow));
     }
 
     details[open] summary i {
@@ -83,35 +99,44 @@
     }
 
     .details-content {
-      padding: 0 2rem 2rem 2rem;
-      color: #b3b3b3;
-      font-size: 1.1rem;
-      line-height: 1.7;
+      padding: 0 2.5rem 2.5rem 2.5rem;
+      color: #cccccc;
+      font-size: 1.25rem; /* Made bigger */
+      line-height: 1.8;
     }
 
     .details-content h3 {
       color: #fff;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.5rem; /* Made bigger */
+      border-left: 4px solid var(--premium-red);
+      padding-left: 10px;
     }
 
     .details-content ul {
       margin-left: 1.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .details-content li {
+      margin-bottom: 0.8rem;
     }
     
     .details-content p {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     
     .details-content a {
-      color: #5865F2;
+      color: var(--premium-red);
       text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
     }
     
     .details-content a:hover {
       text-decoration: underline;
+      text-shadow: 0 0 10px var(--premium-red-glow);
     }
   </style>
 </head>
@@ -141,23 +166,44 @@
   <section id="docs-section">
     <div class="docs-header">
       <h2>Documentation <span>& Legal</span></h2>
-      <p style="color: #b3b3b3; font-size: 1.2rem; margin-top: 10px;">Everything you need to know about how Muzix works.</p>
+      <p style="color: #b3b3b3; font-size: 1.4rem; margin-top: 15px;">Everything you need to know about how Muzix works.</p>
     </div>
 
     <div class="docs-container">
 
       <details>
+        <summary>About Muzix <i class='bx bx-chevron-down'></i></summary>
+        <div class="details-content">
+          <p><strong>Muzix</strong> is a next-generation, feature-rich Discord music bot engineered to deliver a seamless, immersive, and high-fidelity audio experience tailored for modern communities.</p>
+          <p>Whether you're relaxing with friends or enjoying music solo, Muzix keeps the vibe alive with uninterrupted playback and precision control. It combines advanced streaming technology, intelligent queue management, and powerful real-time controls to give you complete command over your music.</p>
+          <p>Built for performance, stability, and speed, Muzix ensures smooth, lag-free playback with crystal-clear audio across multiple platforms and sources.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Core Features <i class='bx bx-chevron-down'></i></summary>
+        <div class="details-content">
+          <p>Muzix is packed with premium features designed to give your server the ultimate audio experience:</p>
+          <ul>
+            <li><strong>24/7 Playback:</strong> Always online, nonstop music streaming from any source without interruptions.</li>
+            <li><strong>High-Quality Audio:</strong> Crystal-clear voice channel rendering powered by advanced Lavalink infrastructure.</li>
+            <li><strong>Audio Filters:</strong> Enhance your music with real-time filters like bass boost, nightcore, vaporwave, and equalizer presets.</li>
+            <li><strong>Custom Playlists:</strong> Create, save, and manage your own personalized server playlists directly in Discord.</li>
+            <li><strong>Auto-Resume & Relocation:</strong> If a host node ever drops, Muzix automatically relocates to a backup node and resumes your song right where it left off.</li>
+            <li><strong>No-Prefix System:</strong> Premium seamless text recognition allows authorized users to request songs without typing a command prefix.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
         <summary>Introduction & Guide <i class='bx bx-chevron-down'></i></summary>
         <div class="details-content">
-          <p>Welcome to <strong>Muzix</strong>! We are a next-generation music bot built to provide the highest quality audio experience directly inside your Discord server.</p>
           <h3>How to Get Started</h3>
           <ul>
             <li><strong>Invite the Bot:</strong> Use the invite button on our home page to add Muzix to your server. Make sure it has permissions to View Channels, Send Messages, Connect, and Speak.</li>
             <li><strong>Commands:</strong> Join a voice channel and use our slash commands (e.g., <code>/play [song name]</code>) to start listening immediately.</li>
             <li><strong>No-Prefix System:</strong> Certain users and servers can be granted "no-prefix" status, allowing them to type song names directly without needing a command prefix.</li>
           </ul>
-          <h3>Key Systems</h3>
-          <p>Muzix utilizes advanced Lavalink nodes to ensure 24/7 uptime, lag-free streaming, and automatic node-relocation if a disruption occurs. We also feature an auto-resume function so your music picks right back up where it left off.</p>
         </div>
       </details>
 
@@ -212,7 +258,7 @@
   </section>
 
   <footer class="footer">
-    <p>Copyright © 2026 Muzix | <a href="docs.html" style="color: #5865F2; text-decoration: none; font-weight: bold; margin-left: 5px;">Docs & Privacy</a></p>
+    <p>Copyright © 2026 Muzix | <a href="docs.html" style="color: var(--premium-red); text-decoration: none; font-weight: bold; margin-left: 5px;">Docs & Privacy</a></p>
   </footer>
 
   <script src="js/script.js"></script>
