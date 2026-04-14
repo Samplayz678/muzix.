@@ -11,7 +11,279 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="images/muzix_new.png">
   <meta name="description" content="Muzix isn’t just a music bot it’s a complete Discord music system with playback, playlists, and controls to upgrade your server’s vibe.">
-</head>
+
+  <style>
+    .performance-section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: inherit;
+    }
+
+    /* Top Pill Badge */
+    .performance-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .badge-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(20, 10, 30, 0.8);
+      border: 1px solid rgba(170, 0, 255, 0.2);
+      padding: 8px 24px 8px 8px;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(170, 0, 255, 0.15);
+    }
+    .badge-icon {
+      background: linear-gradient(135deg, #d500f9, #aa00ff);
+      color: white !important;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .badge-prefix {
+      font-size: 0.65rem;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1.2;
+    }
+    .badge-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Grid Layout */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+    }
+
+    /* Base Card Styling */
+    .stat-bento-card {
+      background: linear-gradient(145deg, rgba(35, 20, 50, 0.6), rgba(15, 10, 20, 0.8));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+    .stat-bento-card:hover {
+      transform: translateY(-5px);
+    }
+    .stat-bento-card h1 {
+      font-size: 3.5rem;
+      margin: 0.5rem 0;
+      color: white;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .stat-bento-card p {
+      color: #9aa0a6;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Infra Card (Spans left side) */
+    .infra-card {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+      background: radial-gradient(circle at top left, rgba(60, 20, 90, 0.4), rgba(15, 10, 20, 0.9));
+      justify-content: center;
+    }
+    .infra-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      color: #ccc;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .infra-header .bx-server {
+      background: rgba(170, 0, 255, 0.15);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.5rem;
+    }
+    .infra-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+    }
+    .infra-tag {
+      background: rgba(255,255,255,0.08);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .verified-tag {
+      margin-left: auto;
+      background: rgba(170, 0, 255, 0.15);
+      color: #aa00ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 1px;
+    }
+
+    /* Uptime Card (Top Right) */
+    .uptime-card {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      justify-content: center;
+    }
+    .uptime-flex {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .circle-icon {
+      font-size: 2.5rem;
+      color: #00ff66 !important;
+      border: 3px solid #00ff66;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+    .uptime-card h1 { font-size: 2.8rem; margin: 0 0 5px 0; }
+    .uptime-card p.guarantee { margin: 0; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 800; color: #00ff66; text-transform: uppercase; }
+    .uptime-card p.small-text { color: #888; margin-top: 0.8rem; font-size: 0.85rem; }
+
+    /* Users Card (Bottom Right) */
+    .users-card {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      justify-content: center;
+    }
+    .users-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .users-flex .bx-user {
+      background: rgba(170, 0, 255, 0.15);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.5rem;
+    }
+    .live-dot {
+      background: rgba(0, 255, 102, 0.1);
+      border: 1px solid rgba(0, 255, 102, 0.2);
+      color: #00ff66;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .dot-inner { 
+      width: 6px; 
+      height: 6px; 
+      background: #00ff66; 
+      border-radius: 50%; 
+      box-shadow: 0 0 8px #00ff66; 
+      animation: pulse 2s infinite; 
+    }
+
+    /* Songs Card (Bottom Full Width) */
+    .songs-card {
+      grid-column: 1 / 3;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 2.5rem;
+    }
+    .songs-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .songs-content .bx-music {
+      background: rgba(31, 191, 255, 0.15);
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 2rem;
+    }
+    .songs-content h1 { font-size: 2.8rem; margin: 0; display: inline-block; }
+    .songs-content p { margin: 0; font-size: 1rem; color: #aaa; margin-left: 10px;}
+
+    /* Animated Waveform */
+    .music-wave {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 50px;
+    }
+    .bar {
+      width: 6px;
+      background: #1fbfff;
+      border-radius: 3px;
+      animation: wave 1s infinite ease-in-out;
+    }
+    .bar:nth-child(2) { background: #aa00ff; animation-delay: 0.1s; }
+    .bar:nth-child(3) { background: #ff003c; animation-delay: 0.2s; }
+    .bar:nth-child(4) { background: #1fbfff; animation-delay: 0.3s; }
+    .bar:nth-child(5) { background: #aa00ff; animation-delay: 0.4s; }
+    .bar:nth-child(6) { background: #ff003c; animation-delay: 0.5s; }
+    .bar:nth-child(7) { background: #1fbfff; animation-delay: 0.6s; }
+    .bar:nth-child(8) { background: #aa00ff; animation-delay: 0.7s; }
+
+    @keyframes wave {
+      0%, 100% { height: 12px; }
+      50% { height: 45px; }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(0, 255, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .infra-card, .uptime-card, .users-card, .songs-card { grid-column: 1 / 2; grid-row: auto; }
+      .songs-card { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .music-wave { align-self: flex-end; }
+    }
+  </style>
+  </head>
 
 <body>
 
@@ -75,69 +347,69 @@
   </section>
 
   <section id="performance" class="performance-section">
-    <div class="bento-card performance-container" data-tilt>
-      <div class="performance-header">
-        <div class="badge-pill">
-          <i class='bx bx-check-circle badge-icon' style='color:#aa00ff'></i>
-          <div>
-            <span class="badge-prefix">PERFORMANCE</span>
-            <span class="badge-text">Built for Scale & Speed</span>
-          </div>
+    <div class="performance-header">
+      <div class="badge-pill">
+        <div class="badge-icon"><i class='bx bxs-zap'></i></div>
+        <div>
+          <span class="badge-prefix">PERFORMANCE</span>
+          <span class="badge-text">Built for Scale & Speed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-bento-card infra-card">
+        <div class="infra-header">
+          <i class='bx bx-server' style='color:#aa00ff'></i>
+          <span>GLOBAL INFRASTRUCTURE</span>
+        </div>
+        <h1>10k+<sup style='color:#aa00ff; font-size: 2rem;'>+</sup></h1>
+        <p>Active servers trusting our low-latency infrastructure daily.</p>
+        <div class="infra-footer">
+          <span class="infra-tag">DS</span>
+          <span class="infra-tag">GL</span>
+          <span class="infra-tag">+</span>
+          <span class="verified-tag">VERIFIED</span>
         </div>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-bento-card infra-card">
-          <div class="infra-header">
-            <i class='bx bx-server' style='color:#aa00ff'></i>
-            <span>GLOBAL INFRASTRUCTURE</span>
-          </div>
-          <h1>10k+<sup style='color:#aa00ff'>+</sup></h1>
-          <p>Active servers trusting our low-latency infrastructure daily.</p>
-          <div class="infra-footer">
-            <span class="infra-tag">US</span>
-            <span class="infra-tag">EU</span>
-            <i class='bx bx-plug'></i>
-            <span class="verified-tag"><i class='bx bx-check-shield'></i>VERIFIED</span>
+      <div class="stat-bento-card uptime-card">
+        <div class="uptime-flex">
+          <i class='bx bx-pulse circle-icon'></i>
+          <div>
+            <h1>99.9%<sup style='color:#00ff66; font-size: 1.5rem;'>%</sup></h1>
+            <p class="guarantee">UPTIME GUARANTEE</p>
           </div>
         </div>
+        <p class="small-text">Zero lag. Always online.</p>
+      </div>
 
-        <div class="stat-bento-card uptime-card">
-          <div class="uptime-flex">
-            <i class='bx bx-check-double circle-icon' style='color:#14ff14'></i>
-            <div>
-              <h1>99.9%</h1>
-              <p>UPTIME GUARANTEE</p>
-            </div>
-          </div>
-          <p class="small-text">Zero lag. Always online.</p>
+      <div class="stat-bento-card users-card">
+        <div class="users-flex">
+          <i class='bx bx-user' style='color:#d500f9'></i>
+          <span class="live-dot"><span class="dot-inner"></span>LIVE</span>
         </div>
+        <h1>999k+<sup style='color:#ff003c; font-size: 2rem;'>+</sup></h1>
+        <p>Happy Users Worldwide</p>
+      </div>
 
-        <div class="stat-bento-card users-card">
-          <div class="users-flex">
-            <i class='bx bx-user' style='color:#aa00ff'></i>
-            <span class="live-dot"><span class="dot-inner"></span>LIVE</span>
-          </div>
-          <h1>999k+<sup style='color:#ff003c'>+</sup></h1>
-          <p>Happy Users Worldwide</p>
-        </div>
-
-        <div class="stat-bento-card songs-card full-width">
-          <div class="songs-content">
-            <i class='bx bx-music' style='color:#1fbfff'></i>
+      <div class="stat-bento-card songs-card">
+        <div class="songs-content">
+          <i class='bx bx-music' style='color:#1fbfff'></i>
+          <div>
             <h1>100k++</h1>
             <p>Songs Streamed Successfully</p>
           </div>
-          <div class="music-wave">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
+        </div>
+        <div class="music-wave">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
         </div>
       </div>
     </div>
@@ -240,7 +512,7 @@
 
   <footer class="footer" id="footer" style="padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
     <p style="color: var(--text-muted, #888); font-size: 1.4rem;">
-      Copyright © 2026 Muzix | 
+      Copyright © 2026 Muzix | 
       <a href="docs.html" style="color: var(--premium-red, #ff4d4d); text-decoration: none; font-weight: bold; margin: 0 5px;">Docs</a> |
       <a href="docs.html#terms" style="color: var(--premium-red, #ff4d4d); text-decoration: none; font-weight: bold; margin: 0 5px;">Terms of Service</a> |
       <a href="docs.html#privacy" style="color: var(--premium-red, #ff4d4d); text-decoration: none; font-weight: bold; margin-left: 5px;">Privacy Policy</a>
