@@ -826,9 +826,9 @@ section {
 
 .bento-card {
   background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border: none;
+  backdrop-filter: blur(5px); /* Minimal blur for glass feel without hiding particles */
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 4rem;
   box-shadow: none;
@@ -1020,11 +1020,10 @@ section {
   min-height: 220px;
   padding: 3.5rem 2.5rem;
   background: transparent;
-  border: none;
+  border: 1px solid var(--glass-border);
   box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border: none;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
