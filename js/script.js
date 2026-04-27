@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Smooth Lerp Scroll & Animation Engine ---
   let currentScroll = 0;
-  const lerpAmount = 0.08; 
+  const lerpAmount = 0.08;
 
   function updateScrollAnimations() {
     // Smoothen the scroll value
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const scale = 1 - progress * 0.1;
           const rotateY = progress * 15;
           const opacity = 1 - progress * 1.1;
-          heroCanvas.style.transform = `translate3d(0, 0, ${moveZ}px) scale(${scale}) rotateY(${rotateY}deg)`;
+          heroCanvas.style.transform = `translate3d(0, 0, ${moveZ}px) scale(${scale})`;
           heroStage.style.opacity = Math.max(0, opacity);
         }
       } else {
@@ -105,14 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Premium 3D Perspective Reveal (Makes it not flat)
         section.style.opacity = progress;
-        section.style.transform = `perspective(2000px) translateY(${(1 - progress) * 50}px) scale(${0.98 + progress * 0.02}) rotateX(${(1 - progress) * 8}deg)`;
+        section.style.transform = `perspective(2000px) translateY(${(1 - progress) * 50}px) scale(${0.98 + progress * 0.02})`;
 
         // Granular Side-Sliding for Children (Progressive)
         group.children.forEach((child, i) => {
           const childProgress = Math.max(0, Math.min(1, progress * 1.3 - (i * 0.1)));
           const direction = (i % 2 === 0) ? -1 : 1;
           const translateX = (1 - childProgress) * 100 * direction;
-          
+
           // Using translate3d for hardware acceleration and scale close to 1 to keep text sharp
           child.style.transform = `translate3d(${translateX}px, 0, 0) scale(${0.98 + childProgress * 0.02})`;
           child.style.opacity = childProgress;
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (preloader) {
       // Prevent scrolling while loading
       document.body.style.overflow = 'hidden';
-      
+
       preloader.style.display = 'flex';
       preloader.classList.remove('fade-out');
 
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
           preloader.style.display = 'none';
           document.body.style.overflow = '';
         }, 800);
-      }, 2000); 
+      }, 2000);
     }
   };
 
