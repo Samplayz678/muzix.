@@ -189,7 +189,7 @@ body {
 .section-3d {
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  background: var(--bg-dark);
+  background: transparent;
   position: relative;
   z-index: 10;
   box-shadow: 0 -100px 200px rgba(0,0,0,0.8);
@@ -441,7 +441,7 @@ section {
   padding: 0;
   overflow: hidden;
   color: var(--text-main);
-  background: var(--bg-dark);
+  background: transparent;
 }
 
 .premium-hero::after {

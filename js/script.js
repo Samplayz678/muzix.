@@ -140,8 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    }
-
     requestAnimationFrame(updateScrollAnimations);
   }
 
@@ -201,12 +199,17 @@ document.addEventListener("DOMContentLoaded", function () {
   if (particleCanvas) {
     const ctx = particleCanvas.getContext('2d');
     let particles = [];
+    let mouse = { x: null, y: null };
 
     function resizeCanvas() {
       particleCanvas.width = window.innerWidth;
       particleCanvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
     resizeCanvas();
 
     class Particle {
@@ -220,8 +223,22 @@ document.addEventListener("DOMContentLoaded", function () {
         this.opacity = Math.random() * 0.5 + 0.1;
       }
       update() {
+        // Basic movement
         this.x += this.speedX;
         this.y += this.speedY;
+
+        // Mouse interaction
+        if (mouse.x !== null && mouse.y !== null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            let force = (150 - distance) / 150;
+            this.x -= dx * force * 0.05;
+            this.y -= dy * force * 0.05;
+          }
+        }
+
         if (this.x < 0 || this.x > particleCanvas.width || this.y < 0 || this.y > particleCanvas.height) this.reset();
       }
       draw() {
@@ -232,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    for (let i = 0; i < 60; i++) particles.push(new Particle());
+    for (let i = 0; i < 100; i++) particles.push(new Particle());
 
     function animateParticles() {
       ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
@@ -247,12 +264,22 @@ document.addEventListener("DOMContentLoaded", function () {
   if (sectionParticleCanvas) {
     const sctx = sectionParticleCanvas.getContext('2d');
     let sParticles = [];
+    let sMouse = { x: null, y: null };
 
     function resizeSectionCanvas() {
       sectionParticleCanvas.width = sectionParticleCanvas.offsetWidth;
       sectionParticleCanvas.height = sectionParticleCanvas.offsetHeight;
     }
     window.addEventListener('resize', resizeSectionCanvas);
+    sectionParticleCanvas.addEventListener('mousemove', (e) => {
+      const rect = sectionParticleCanvas.getBoundingClientRect();
+      sMouse.x = e.clientX - rect.left;
+      sMouse.y = e.clientY - rect.top;
+    });
+    sectionParticleCanvas.addEventListener('mouseleave', () => {
+      sMouse.x = null;
+      sMouse.y = null;
+    });
     resizeSectionCanvas();
 
     class SectionParticle {
@@ -268,6 +295,19 @@ document.addEventListener("DOMContentLoaded", function () {
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
+
+        // Mouse interaction for divider
+        if (sMouse.x !== null && sMouse.y !== null) {
+          let dx = sMouse.x - this.x;
+          let dy = sMouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            let force = (100 - distance) / 100;
+            this.x -= dx * force * 0.1;
+            this.y -= dy * force * 0.1;
+          }
+        }
+
         if (this.x < 0 || this.x > sectionParticleCanvas.width || this.y < 0 || this.y > sectionParticleCanvas.height) {
           this.reset();
         }
