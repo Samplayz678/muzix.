@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Premium 3D Perspective Reveal (Makes it not flat)
         section.style.opacity = progress;
-        section.style.transform = `perspective(2000px) translateY(${(1 - progress) * 50}px) scale(${0.98 + progress * 0.02})`;
+        section.style.transform = `translateY(${(1 - progress) * 20}px)`;
 
         // Granular Side-Sliding for Children (Progressive)
         group.children.forEach((child, i) => {
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const translateX = (1 - childProgress) * 100 * direction;
 
           // Using translate3d for hardware acceleration and scale close to 1 to keep text sharp
-          child.style.transform = `translate3d(${translateX}px, 0, 0) scale(${0.98 + childProgress * 0.02})`;
+          child.style.transform = `translate3d(${translateX}px, 0, 0)`;
           child.style.opacity = childProgress;
         });
       }
@@ -192,48 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (textArray.length) setTimeout(type, newTextDelay + 250);
 
-  // --- 3D Tilted Card & Bento Shimmer Effect ---
-  const tiltElements = document.querySelectorAll('.bento-card[data-tilt]');
-
-  tiltElements.forEach(el => {
-    el.addEventListener('mousemove', handleTilt);
-    el.addEventListener('mouseleave', resetTilt);
-  });
-
-  function handleTilt(e) {
-    const el = this;
-    const rect = el.getBoundingClientRect();
-    const width = el.clientWidth;
-    const height = el.clientHeight;
-
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    el.style.setProperty('--mouse-x', `${x}px`);
-    el.style.setProperty('--mouse-y', `${y}px`);
-
-    const centerX = x - width / 2;
-    const centerY = y - height / 2;
-
-    const rotateX = -(centerY / height) * 15;
-    const rotateY = (centerX / width) * 15;
-
-    requestAnimationFrame(() => {
-      // We combine the base scroll transform (scale/translate) with the tilt rotation
-      // Actually, since we use transform for Tilt, it WILL overwrite the scroll-based transform.
-      // To fix this, we should really use independent properties or a wrapper.
-      // But user said "revert" for wrappers. 
-      // I will use `translateZ(0)` to keep it a hardware layer.
-      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    });
-  }
-
-  function resetTilt() {
-    const el = this;
-    requestAnimationFrame(() => {
-      el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-    });
-  }
+  // --- Hover Tilt Effect Removed ---
 
   // --- Ambient Background Particles ---
   const particleCanvas = document.getElementById('canvas');
