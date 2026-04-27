@@ -360,28 +360,28 @@ section {
 }
 
 /* --- Header / Fluent Nav --- */
-/* Initial State (Like Image 1) */
 .header {
   position: fixed;
-  top: 0;
+  top: 0; /* Keep top locked at 0 */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 0); /* Control centering and vertical drop via GPU */
   width: 100%;
   max-width: 100%;
   padding: 2rem 5%;
   background: transparent;
-  border: 1px solid transparent; /* Keeps transition smooth */
+  border: 1px solid transparent; 
   border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Specifically transition only what changes, avoiding 'all' */
+  transition: transform 0.4s ease, width 0.4s ease, max-width 0.4s ease, padding 0.4s ease, background 0.4s ease, border-radius 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform, width, max-width; /* Hints browser to hardware-accelerate */
 }
 
-/* Scrolled State (Like Image 2) */
 .header.scrolled {
-  top: 20px;
+  transform: translate(-50%, 20px); /* Drops the pill down via GPU */
   width: 90%;
   max-width: 1200px;
   padding: 1.2rem 2.5rem;
@@ -1332,16 +1332,16 @@ details[open]:not(.is-closing) summary i {
   /* Header & Nav */
   .header {
     width: 100%;
-    top: 0;
     padding: 1.5rem 2rem;
     border-radius: 0;
+    transform: translate(-50%, 0);
   }
 
   .header.scrolled {
-    top: 10px;
     width: 95%;
     padding: 1.2rem 2rem;
     border-radius: 100px;
+    transform: translate(-50%, 10px); /* Mobile drops down 10px instead of 20px */
   }
 
   #menu-icon {

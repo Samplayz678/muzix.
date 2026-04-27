@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Header State
+    // Header Parallax & State
     if (header) {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
