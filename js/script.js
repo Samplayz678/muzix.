@@ -128,15 +128,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Header Parallax & State
+    // Header State
     if (header) {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
-        const navParallax = Math.sin(scrollY * 0.005) * 4;
-        header.style.transform = `translate3d(-50%, ${navParallax}px, 0)`;
       } else {
         header.classList.remove('scrolled');
-        header.style.transform = `translate3d(-50%, 0, 0)`;
       }
     }
 
