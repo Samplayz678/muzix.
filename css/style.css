@@ -189,13 +189,12 @@ body {
 .section-3d {
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  background: transparent;
+  background: transparent !important;
   position: relative;
   z-index: 10;
-  box-shadow: 0 -100px 200px rgba(0,0,0,0.8);
+  box-shadow: none !important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  contain: paint; /* Isolate paint updates */
 }
 
 section {
