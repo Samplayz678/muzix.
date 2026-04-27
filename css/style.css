@@ -825,9 +825,9 @@ section {
 }
 
 .bento-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 4rem;
@@ -894,11 +894,9 @@ section {
   align-items: center;
   justify-content: center;
 
-  /* 🖤 Glass Black Base */
-  background: linear-gradient(145deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.3));
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -1020,7 +1018,7 @@ section {
   text-align: center;
   min-height: 220px;
   padding: 3.5rem 2.5rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(239, 68, 68, 0.08));
+  background: rgba(255, 255, 255, 0.02);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: border-color 0.3s ease, background 0.3s ease;
