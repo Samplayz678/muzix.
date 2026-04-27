@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroStage = document.querySelector('.hero-stage');
   const heroCanvas = document.querySelector('#hero-canvas');
   const header = document.querySelector('.header');
-  const backgroundVideo = document.getElementById('v0');
 
   const scrollAnimatedElements = [];
   sections.forEach(section => {
@@ -141,18 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Background Video Scroll Sync (Frame-Driven)
-    if (backgroundVideo && backgroundVideo.readyState >= 2) {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollFraction = Math.max(0, Math.min(1, scrollY / totalScroll));
-      
-      // Calculate target time with high precision
-      const targetTime = backgroundVideo.duration * scrollFraction;
-      
-      // Only update if there's a meaningful change to avoid jitter
-      if (Math.abs(backgroundVideo.currentTime - targetTime) > 0.01) {
-        backgroundVideo.currentTime = targetTime;
-      }
     }
 
     requestAnimationFrame(updateScrollAnimations);
@@ -253,6 +240,56 @@ document.addEventListener("DOMContentLoaded", function () {
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
+  }
+
+  // --- Localized Section Particles ---
+  const sectionParticleCanvas = document.getElementById('section-particles');
+  if (sectionParticleCanvas) {
+    const sctx = sectionParticleCanvas.getContext('2d');
+    let sParticles = [];
+
+    function resizeSectionCanvas() {
+      sectionParticleCanvas.width = sectionParticleCanvas.offsetWidth;
+      sectionParticleCanvas.height = sectionParticleCanvas.offsetHeight;
+    }
+    window.addEventListener('resize', resizeSectionCanvas);
+    resizeSectionCanvas();
+
+    class SectionParticle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * sectionParticleCanvas.width;
+        this.y = Math.random() * sectionParticleCanvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 2;
+        this.speedY = (Math.random() - 0.5) * 2;
+        this.opacity = Math.random() * 0.6 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > sectionParticleCanvas.width || this.y < 0 || this.y > sectionParticleCanvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        sctx.fillStyle = `rgba(239, 68, 68, ${this.opacity})`;
+        sctx.shadowBlur = 10;
+        sctx.shadowColor = 'rgba(239, 68, 68, 0.5)';
+        sctx.beginPath();
+        sctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        sctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 40; i++) sParticles.push(new SectionParticle());
+
+    function animateSectionParticles() {
+      sctx.clearRect(0, 0, sectionParticleCanvas.width, sectionParticleCanvas.height);
+      sParticles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateSectionParticles);
+    }
+    animateSectionParticles();
   }
   // --- Preloader Hiding (Robust Navigation + Scroll Lock) ---
   const handlePreloader = () => {

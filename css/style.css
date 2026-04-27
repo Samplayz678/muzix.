@@ -38,7 +38,6 @@
 html {
   font-size: 62.5%;
   overflow-x: hidden;
-  background-color: #050505; /* Base color behind the video */
 }
 
 /* Custom Sliding Scrollbar */
@@ -60,7 +59,7 @@ html {
 }
 
 body {
-  background-color: transparent;
+  background-color: var(--bg-dark);
   color: var(--text-main);
   line-height: 1.6;
   min-height: 100vh;
@@ -84,19 +83,7 @@ body {
   pointer-events: none;
 }
 
-#v0 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 1; /* Above html base, below everything else */
-  pointer-events: none;
-  opacity: 1;
-  filter: brightness(0.7);
-  background: #050505;
-}
+
 
 .aurora-blob {
   position: absolute;
@@ -202,7 +189,7 @@ body {
 .section-3d {
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  background: transparent !important;
+  background: var(--bg-dark);
   position: relative;
   z-index: 10;
   box-shadow: 0 -100px 200px rgba(0,0,0,0.8);
@@ -454,9 +441,7 @@ section {
   padding: 0;
   overflow: hidden;
   color: var(--text-main);
-  background: transparent !important;
-  position: relative;
-  z-index: 10;
+  background: var(--bg-dark);
 }
 
 .premium-hero::after {
