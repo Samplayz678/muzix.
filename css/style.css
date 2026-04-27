@@ -1331,9 +1331,17 @@ details[open]:not(.is-closing) summary i {
 
   /* Header & Nav */
   .header {
-    width: 95%;
+    width: 100%;
+    top: 0;
+    padding: 1.5rem 2rem;
+    border-radius: 0;
+  }
+
+  .header.scrolled {
     top: 10px;
+    width: 95%;
     padding: 1.2rem 2rem;
+    border-radius: 100px;
   }
 
   #menu-icon {
@@ -1343,7 +1351,7 @@ details[open]:not(.is-closing) summary i {
 
   .navbar {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px); /* Pushes the menu safely below the header */
     left: 0;
     width: 100%;
     background: rgba(10, 10, 10, 0.95);
@@ -1382,10 +1390,10 @@ details[open]:not(.is-closing) summary i {
   .hero-stage {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center; /* Centers everything vertically */
     align-items: flex-start;
-    gap: 1.6rem;
-    padding: 14rem 2rem 4.5rem;
+    gap: 2.5rem;
+    padding: 10rem 2rem 4rem; /* Reduced excessive padding */
   }
 
   #hero-canvas {
@@ -1393,17 +1401,20 @@ details[open]:not(.is-closing) summary i {
   }
 
   .hero-wordmark {
-    top: 8.5rem;
-    font-size: clamp(6.2rem, 24vw, 10rem);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(5rem, 22vw, 9rem);
+    opacity: 0.05; /* Fade out slightly more on mobile so it isn't distracting */
   }
 
   .hero-copy h1 {
     font-size: clamp(4.8rem, 15vw, 7.2rem);
     letter-spacing: -1px;
+    margin-top: 0;
   }
 
   .hero-lede {
-    max-width: 40rem;
+    max-width: 100%;
   }
 
   .hero-copy::before {
@@ -1413,24 +1424,23 @@ details[open]:not(.is-closing) summary i {
     border-radius: 20px;
   }
 
-  .hero-console {
+  /* Fix overlapping elements by making them stack naturally */
+  .hero-console, .hero-vote {
     position: relative;
     right: auto;
     bottom: auto;
-    width: min(100%, 38rem);
-    margin-top: 0.4rem;
-  }
-
-  .hero-vote {
-    top: 8.2rem;
-    right: 2rem;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 40rem;
+    margin-top: 0;
   }
 
   .scroll-cue {
     display: none;
   }
 
-  /* Hero */
+  /* Hero Main Content Below Stage */
   .hero-main h1 {
     font-size: 4rem;
   }
@@ -1447,8 +1457,6 @@ details[open]:not(.is-closing) summary i {
     justify-content: center;
   }
 
-  /* Centers buttons if inline flex is used */
-
   /* Marquee */
   .marquee-content span {
     font-size: 2rem;
@@ -1460,7 +1468,7 @@ details[open]:not(.is-closing) summary i {
     line-height: 1.7;
   }
 
-  /* Docs Page Specific Scaling */
+  /* Docs Page */
   #docs-section {
     padding: 100px 5% 40px;
   }
@@ -1482,7 +1490,6 @@ details[open]:not(.is-closing) summary i {
     font-size: 1.8rem;
   }
 
-  /* OVERRIDE: Keep closed padding tight, but open padding properly spaced */
   .details-content {
     padding: 0 2rem;
   }
@@ -1515,25 +1522,24 @@ details[open]:not(.is-closing) summary i {
   }
 
   .hero-stage {
-    padding: 13rem 1.6rem 3.6rem;
+    padding: 10rem 1.6rem 3rem;
   }
 
-  .hero-actions,
+  /* Stack buttons neatly on very small screens */
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
   .premium-btn {
     width: 100%;
     border-radius: 12px;
   }
 
   .hero-lede {
-    color: #e2e8f0; /* Brighter for better contrast */
+    color: #e2e8f0;
     font-size: 1.6rem;
     margin-bottom: 1rem;
-  }
-
-  .hero-vote {
-    left: 1.6rem;
-    right: auto;
-    max-width: calc(100% - 3.2rem);
   }
 
   .hero-main h1 {
@@ -1556,7 +1562,6 @@ details[open]:not(.is-closing) summary i {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .signal-row span,
   .scroll-cue span,
   .hero-copy .cursor {
