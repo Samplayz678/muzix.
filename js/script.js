@@ -141,11 +141,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Background Video Scroll Sync
-    if (backgroundVideo && backgroundVideo.duration) {
+    // Background Video Scroll Sync (Frame-Driven)
+    if (backgroundVideo && backgroundVideo.readyState >= 2) {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollY / totalScroll;
-      backgroundVideo.currentTime = backgroundVideo.duration * Math.max(0, Math.min(1, scrollFraction));
+      const scrollFraction = Math.max(0, Math.min(1, scrollY / totalScroll));
+      
+      // Calculate target time with high precision
+      const targetTime = backgroundVideo.duration * scrollFraction;
+      
+      // Only update if there's a meaningful change to avoid jitter
+      if (Math.abs(backgroundVideo.currentTime - targetTime) > 0.01) {
+        backgroundVideo.currentTime = targetTime;
+      }
     }
 
     requestAnimationFrame(updateScrollAnimations);

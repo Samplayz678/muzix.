@@ -86,13 +86,17 @@ body {
 #v0 {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: cover;
-  z-index: -3; /* Behind aurora and canvas */
+  z-index: -3;
   pointer-events: none;
-  opacity: 0.6; /* Adjust opacity as needed for a subtle look */
+  opacity: 1; /* Full opacity for frame animation effect */
+  filter: brightness(0.7); /* Keep it slightly dark for text readability */
 }
 
 .aurora-blob {
