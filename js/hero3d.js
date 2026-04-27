@@ -127,10 +127,11 @@ if (canvas && stage) {
   keyLight.shadow.mapSize.set(2048, 2048);
   keyLight.shadow.camera.near = 0.1;
   keyLight.shadow.camera.far = 16;
-  keyLight.shadow.camera.left = -6;
-  keyLight.shadow.camera.right = 6;
-  keyLight.shadow.camera.top = 6;
-  keyLight.shadow.camera.bottom = -6;
+  // Increased from 6 to 10 to ensure shadows reach the edge of the floor
+  keyLight.shadow.camera.left = -10;
+  keyLight.shadow.camera.right = 10;
+  keyLight.shadow.camera.top = 10;
+  keyLight.shadow.camera.bottom = -10;
   scene.add(keyLight);
 
   buildScene();
