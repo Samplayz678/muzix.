@@ -118,7 +118,7 @@ if (canvas && stage) {
   blueLight.position.set(3.4, 1.2, 3.4);
   scene.add(blueLight);
 
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x8a775f, 1.8);
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x111111, 1.8);
   scene.add(hemiLight);
 
   const keyLight = new THREE.DirectionalLight(0xffffff, 2.35);
@@ -187,7 +187,7 @@ if (canvas && stage) {
     addRocks(island);
     addEqualizer(island);
     addWaveRings();
-    addOrbitingIcons(); 
+    addOrbitingIcons();
     addFloatingPanels();
 
     const floor = new THREE.Mesh(
@@ -340,7 +340,7 @@ if (canvas && stage) {
       const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
       const sprite = new THREE.Sprite(material);
       sprite.scale.set(0.48, 0.48, 1);
-      
+
       carrier.add(sprite);
       carrier.userData = { radius, y, angle, speed: 0.24 + radius * 0.035 };
       sculpture.add(carrier);
@@ -499,7 +499,7 @@ function createIconTexture(type) {
   ctx.lineWidth = 10;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-  
+
   // Neon Glow Effect
   ctx.shadowBlur = 12;
   ctx.shadowColor = neonRed;
