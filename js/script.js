@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
         group.children.forEach((child, i) => {
           const childProgress = Math.max(0, Math.min(1, progress * 1.3 - (i * 0.1)));
           const direction = (i % 2 === 0) ? -1 : 1;
-          const translateX = (1 - childProgress) * 100 * direction;
+          const translateX = (1 - childProgress) * 400 * direction;
 
           // Using translate3d for hardware acceleration and scale close to 1 to keep text sharp
           child.style.transform = `translate3d(${translateX}px, 0, 0)`;
