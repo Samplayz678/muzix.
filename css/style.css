@@ -363,12 +363,14 @@ section {
 .header {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translate3d(-50%, 0, 0); /* 3D forces Hardware GPU Acceleration */
+  left: 0;
+  right: 0;
+  margin: 0 auto; /* Flawless centering that doesn't cause sub-pixel jitter */
+  transform: translateY(0);
   width: 100%;
   max-width: 100%;
   padding: 2rem 5%;
-  background: rgba(10, 10, 10, 0); /* Match target color but fully transparent */
+  background: transparent;
   border: 1px solid transparent; 
   border-radius: 0;
   display: flex;
@@ -376,24 +378,27 @@ section {
   align-items: center;
   z-index: 1000;
   
-  /* EXPLICIT TRANSITIONS: We intentionally exclude backdrop-filter and box-shadow to save frames */
-  transition: width 0.4s ease, max-width 0.4s ease, padding 0.4s ease, background 0.4s ease, border-radius 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
-  
-  /* Anti-jitter fixes for text during animation */
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
+  /* Explicitly transition only layout properties, NOT the heavy blur filter */
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: width, max-width, transform;
 }
 
 .header.scrolled {
-  transform: translate3d(-50%, 20px, 0); /* Drops down on the GPU */
+  transform: translateY(20px); /* Drops the pill down smoothly */
   width: 90%;
   max-width: 1200px;
   padding: 1.2rem 2.5rem;
   background: rgba(10, 10, 10, 0.6);
-  border-color: rgba(255, 255, 255, 0.08);
-  border-radius: 100px;
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.05);
 }
 
@@ -1338,14 +1343,14 @@ details[open]:not(.is-closing) summary i {
     width: 100%;
     padding: 1.5rem 2rem;
     border-radius: 0;
-    transform: translate3d(-50%, 0, 0);
+    transform: translateY(0);
   }
 
   .header.scrolled {
     width: 95%;
     padding: 1.2rem 2rem;
     border-radius: 100px;
-    transform: translate3d(-50%, 10px, 0);
+    transform: translateY(10px);
   }
 
   #menu-icon {

@@ -128,8 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Header Parallax & State
+    // Header State
     if (header) {
+      // This line forces JS to drop control of the transform so CSS can take over
+      header.style.transform = ''; 
+      
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
       } else {
