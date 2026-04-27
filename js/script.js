@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroStage = document.querySelector('.hero-stage');
   const heroCanvas = document.querySelector('#hero-canvas');
   const header = document.querySelector('.header');
+  const backgroundVideo = document.getElementById('v0');
 
   const scrollAnimatedElements = [];
   sections.forEach(section => {
@@ -138,6 +139,13 @@ document.addEventListener("DOMContentLoaded", function () {
         header.classList.remove('scrolled');
         header.style.transform = `translate3d(-50%, 0, 0)`;
       }
+    }
+
+    // Background Video Scroll Sync
+    if (backgroundVideo && backgroundVideo.duration) {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollFraction = scrollY / totalScroll;
+      backgroundVideo.currentTime = backgroundVideo.duration * Math.max(0, Math.min(1, scrollFraction));
     }
 
     requestAnimationFrame(updateScrollAnimations);
