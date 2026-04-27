@@ -362,34 +362,38 @@ section {
 /* --- Header / Fluent Nav --- */
 .header {
   position: fixed;
-  top: 0; /* Keep top locked at 0 */
+  top: 0;
   left: 50%;
-  transform: translate(-50%, 0); /* Control centering and vertical drop via GPU */
+  transform: translate3d(-50%, 0, 0); /* 3D forces Hardware GPU Acceleration */
   width: 100%;
   max-width: 100%;
   padding: 2rem 5%;
-  background: transparent;
+  background: rgba(10, 10, 10, 0); /* Match target color but fully transparent */
   border: 1px solid transparent; 
   border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  /* Specifically transition only what changes, avoiding 'all' */
-  transition: transform 0.4s ease, width 0.4s ease, max-width 0.4s ease, padding 0.4s ease, background 0.4s ease, border-radius 0.4s ease, box-shadow 0.4s ease;
-  will-change: transform, width, max-width; /* Hints browser to hardware-accelerate */
+  
+  /* EXPLICIT TRANSITIONS: We intentionally exclude backdrop-filter and box-shadow to save frames */
+  transition: width 0.4s ease, max-width 0.4s ease, padding 0.4s ease, background 0.4s ease, border-radius 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+  
+  /* Anti-jitter fixes for text during animation */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .header.scrolled {
-  transform: translate(-50%, 20px); /* Drops the pill down via GPU */
+  transform: translate3d(-50%, 20px, 0); /* Drops down on the GPU */
   width: 90%;
   max-width: 1200px;
   padding: 1.2rem 2.5rem;
   background: rgba(10, 10, 10, 0.6);
-  backdrop-filter: blur(15px) saturate(180%);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
   border-color: rgba(255, 255, 255, 0.08);
   border-radius: 100px;
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.05);
 }
 
@@ -1334,14 +1338,14 @@ details[open]:not(.is-closing) summary i {
     width: 100%;
     padding: 1.5rem 2rem;
     border-radius: 0;
-    transform: translate(-50%, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 
   .header.scrolled {
     width: 95%;
     padding: 1.2rem 2rem;
     border-radius: 100px;
-    transform: translate(-50%, 10px); /* Mobile drops down 10px instead of 20px */
+    transform: translate3d(-50%, 10px, 0);
   }
 
   #menu-icon {
