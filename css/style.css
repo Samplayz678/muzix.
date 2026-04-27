@@ -181,7 +181,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1; /* Behind all content */
+  z-index: 1; /* Above base, below content */
   pointer-events: none;
   /* Let clicks pass through */
 }
@@ -200,7 +200,7 @@ body {
 
 section {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   transform-style: preserve-3d;
   /* Remove transition to let JS handle it smoothly via Lerp */
 }
