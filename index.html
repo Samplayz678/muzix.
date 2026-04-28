@@ -587,16 +587,17 @@
       );
 
       // 2. Buttery Smooth Scroll Reveals (Framer style)
-      // Since script.js already toggles a class, we will enhance it with Motion's physics.
-      const sections = document.querySelectorAll(".section-3d");
-      sections.forEach(section => {
-        inView(section, () => {
-          const children = section.querySelectorAll(".bento-card, .stats-card, .step-card, .testimonial-card, .final-cta");
-          animate(children, 
-            { opacity: [0, 1], y: [50, 0], scale: [0.95, 1] }, 
-            { delay: stagger(0.1), duration: 0.6, easing: [0.16, 1, 0.3, 1] }
+      // Targeting all elements that should reveal on scroll
+      const revealElements = document.querySelectorAll(".bento-card, .stats-card, .step-card, .testimonial-card, .final-cta, .heading");
+      
+      revealElements.forEach(el => {
+        inView(el, () => {
+          animate(el, 
+            { opacity: [0, 1], y: [40, 0], scale: [0.98, 1] }, 
+            { duration: 0.8, easing: [0.16, 1, 0.3, 1] }
           );
-        }, { margin: "-100px" });
+          // Return a cleanup function if we want to reverse, but usually we just reveal once
+        }, { margin: "0px 0px -100px 0px" });
       });
 
       // 3. Premium Magnetic Hover Physics
