@@ -42,16 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroCanvas = document.querySelector('#hero-canvas');
   const header = document.querySelector('.header');
 
-  const scrollAnimatedElements = [];
-  sections.forEach(section => {
-    if (!section.classList.contains('premium-hero') && section.id !== 'docs-section') {
-      const children = section.querySelectorAll('.bento-card, .stat-box, .pricing-card');
-      scrollAnimatedElements.push({
-        section: section,
-        children: Array.from(children)
-      });
-    }
-  });
+
+
+  // Intersection Observer removed to restore "same as others" scroll side-slide animation
 
   // --- Smooth Lerp Scroll & Animation Engine ---
   let currentScroll = 0;
@@ -82,41 +75,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // High-End Aurora Parallax removed to prevent conflict with CSS keyframes
 
-    // Organic Side-Slide Reveal
+    // Organic Side-Slide Reveal Restored
+    // Update Active Nav Link Based on Scroll Position
     let currentId = '';
-    scrollAnimatedElements.forEach((group) => {
-      const section = group.section;
+    sections.forEach(section => {
       const sectionTop = section.offsetTop;
-
       if (window.scrollY >= sectionTop - 400) {
         currentId = section.getAttribute('id');
       }
-
-      const rect = section.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (isVisible) {
-        const scrolled = scrollY - (sectionTop - window.innerHeight);
-        const progress = Math.max(0, Math.min(1, scrolled / window.innerHeight));
-
-        // Premium 3D Perspective Reveal (Makes it not flat)
-        section.style.opacity = progress;
-        section.style.transform = `translateY(${(1 - progress) * 20}px)`;
-
-        // Granular Side-Sliding for Children (Progressive)
-        group.children.forEach((child, i) => {
-          const childProgress = Math.max(0, Math.min(1, progress * 1.3 - (i * 0.1)));
-          const direction = (i % 2 === 0) ? -1 : 1;
-          const translateX = (1 - childProgress) * 400 * direction;
-
-          // Using translate3d for hardware acceleration and scale close to 1 to keep text sharp
-          child.style.transform = `translate3d(${translateX}px, 0, 0)`;
-          child.style.opacity = childProgress;
-        });
-      }
     });
 
-    // Update Nav
     navLinks.forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${currentId}`) {

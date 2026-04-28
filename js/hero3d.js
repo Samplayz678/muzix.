@@ -493,17 +493,20 @@ function createIconTexture(type) {
 
   ctx.clearRect(0, 0, 128, 128);
 
-  // Neon Red Styling
-  const neonRed = '#ff0000';
-  ctx.strokeStyle = neonRed;
-  ctx.fillStyle = neonRed;
+  // Neon Gradient Styling
+  const gradient = ctx.createLinearGradient(0, 0, 128, 128);
+  gradient.addColorStop(0, '#ef4444'); // Primary Muzix Red
+  gradient.addColorStop(1, '#fca5a5'); // Tertiary Accent Pink/Red
+
+  ctx.strokeStyle = gradient;
+  ctx.fillStyle = gradient;
   ctx.lineWidth = 10;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
 
   // Neon Glow Effect
   ctx.shadowBlur = 12;
-  ctx.shadowColor = neonRed;
+  ctx.shadowColor = '#ef4444';
 
   if (type === 'discord') {
     ctx.beginPath();
