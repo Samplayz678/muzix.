@@ -18,6 +18,14 @@
        ULTRA-PREMIUM OVERRIDE STYLES
        ======================================================== */
 
+    /* CRITICAL FIX: If your style.css has overflow-x: hidden, it disables position: sticky. 
+      'clip' achieves the same horizontal hiding but allows vertical sticky to work. 
+    */
+    html,
+    body {
+      overflow-x: clip !important;
+    }
+
     .premium-header-text {
       text-align: center;
       margin-bottom: 3rem;
@@ -88,8 +96,12 @@
       max-width: 1250px;
       margin: 0 auto;
       z-index: 10;
+
+      /* THIS KEEPS THE CARDS FIXED */
       position: sticky;
-      top: 10vh;
+      top: 15vh;
+      /* Locks 15% from the top of the screen */
+      align-items: start;
     }
 
     /* Glassmorphism Cards */
@@ -106,7 +118,6 @@
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
       overflow: hidden;
-      transform: translateZ(0);
     }
 
     .pricing-card::before {
@@ -219,10 +230,15 @@
       gap: 0.8rem;
     }
 
+    /* CRITICAL FIX: Forces the line-through even if CSS resets hide it */
     .original-price-wrap s {
       color: #71717a;
       font-size: 1.8rem;
       font-weight: 600;
+      text-decoration: line-through !important;
+      text-decoration-color: rgba(255, 77, 77, 0.8) !important;
+      /* Premium red strike */
+      text-decoration-thickness: 2px !important;
     }
 
     .sale-tag {
