@@ -101,13 +101,11 @@
     /* === UPDATED: Clean, Big, Trustworthy Typography === */
     .details-content {
       padding: 0 4rem 4rem 4rem;
-      /* Increased padding for cleaner look */
     }
 
     .last-updated {
       text-align: center;
       color: #94a3b8;
-      /* Muted gray/blue */
       font-size: 1.4rem;
       margin-bottom: 3rem !important;
       font-weight: 500;
@@ -118,20 +116,18 @@
       margin-top: 4rem;
       margin-bottom: 1.5rem;
       font-size: 2.4rem;
-      /* Big and bold like the image */
       font-weight: 700;
       letter-spacing: -0.5px;
     }
 
     .details-content p {
       color: #cbd5e1;
-      /* Slate color for readability */
       font-size: 1.6rem;
       line-height: 1.8;
       margin-bottom: 2rem;
     }
 
-    /* Custom List styling to match the screenshot */
+    /* Custom List styling */
     .details-content ul {
       list-style-type: none;
       margin-left: 0;
@@ -147,7 +143,6 @@
       padding-left: 1.5rem;
     }
 
-    /* Creating the clean '•' bullet point */
     .details-content li::before {
       content: '•';
       position: absolute;
@@ -188,7 +183,6 @@
 
 <body style="background: var(--bg-dark);">
 
-  <!-- Preloader -->
   <div id="preloader">
     <div class="loader-wrapper">
       <div class="loader-logo-container">
@@ -214,6 +208,7 @@
       <a href="index.html">Home</a>
       <a href="index.html#stats">Stats</a>
       <a href="index.html#features">Features</a>
+      <a href="premium.html">Premium</a>
       <a href="index.html#about">About</a>
       <a href="#" class="active">Docs</a>
     </nav>
@@ -370,12 +365,12 @@
   </section>
 
   <footer id="footer"
-    style="padding: 6rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2); margin-top: 5rem;">
+    style="padding: 6rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); margin-top: 5rem;">
     <div style="max-width: 1200px; margin: 0 auto;">
       <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 4rem;">
 
         <div style="flex: 1 1 300px;">
-          <a href="#"
+          <a href="index.html"
             style="display: flex; align-items: center; gap: 1.2rem; text-decoration: none; margin-bottom: 1.5rem;">
             <img src="images/muzix_new.png" alt="Muzix Logo"
               style="width: 45px; height: 45px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
@@ -419,11 +414,15 @@
               style="color: var(--text-muted, #888); text-decoration: none; font-size: 1.4rem; transition: 0.3s;"
               onmouseover="this.style.color='var(--premium-red, #ff4d4d)'"
               onmouseout="this.style.color='var(--text-muted, #888)'">Features</a>
+            <a href="premium.html"
+              style="color: var(--text-muted, #888); text-decoration: none; font-size: 1.4rem; transition: 0.3s;"
+              onmouseover="this.style.color='var(--premium-red, #ff4d4d)'"
+              onmouseout="this.style.color='var(--text-muted, #888)'">Premium</a>
             <a href="index.html#about"
               style="color: var(--text-muted, #888); text-decoration: none; font-size: 1.4rem; transition: 0.3s;"
               onmouseover="this.style.color='var(--premium-red, #ff4d4d)'"
               onmouseout="this.style.color='var(--text-muted, #888)'">About</a>
-            <a href="docs.html"
+            <a href="#"
               style="color: var(--text-muted, #888); text-decoration: none; font-size: 1.4rem; transition: 0.3s;"
               onmouseover="this.style.color='var(--premium-red, #ff4d4d)'"
               onmouseout="this.style.color='var(--text-muted, #888)'">Documentation</a>
@@ -454,11 +453,11 @@
             <h4
               style="color: #fff; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; border-left: 3px solid var(--premium-red, #ff4d4d); padding-left: 1rem; margin-bottom: 0.5rem;">
               Legal</h4>
-            <a href="docs.html#terms"
+            <a href="#terms"
               style="color: var(--text-muted, #888); text-decoration: none; font-size: 1.4rem; transition: 0.3s;"
               onmouseover="this.style.color='var(--premium-red, #ff4d4d)'"
               onmouseout="this.style.color='var(--text-muted, #888)'">Terms of Service</a>
-            <a href="docs.html#privacy"
+            <a href="#privacy"
               style="color: var(--text-muted, #888); text-decoration: none; font-size: 1.4rem; transition: 0.3s;"
               onmouseover="this.style.color='var(--premium-red, #ff4d4d)'"
               onmouseout="this.style.color='var(--text-muted, #888)'">Privacy Policy</a>
