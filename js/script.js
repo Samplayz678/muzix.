@@ -80,11 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // High-End Aurora Parallax
-    auroraBlobs.forEach((blob, index) => {
-      const depth = (index + 1) * 0.05;
-      blob.style.transform = `translate3d(0, ${scrollY * depth}px, 0) scale(${1 + scrollY * 0.0001})`;
-    });
+    // High-End Aurora Parallax removed to prevent conflict with CSS keyframes
 
     // Organic Side-Slide Reveal
     let currentId = '';
