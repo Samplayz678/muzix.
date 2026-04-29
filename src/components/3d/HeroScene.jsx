@@ -1,6 +1,6 @@
 import { Suspense, useState, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { PerspectiveCamera, Float, ContactShadows, Environment, Text } from '@react-three/drei'
+import { PerspectiveCamera, Float, ContactShadows, Environment, Text, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei'
 import * as THREE from 'three'
 import Logo from './Logo'
 import Island from './Island'
@@ -172,8 +172,11 @@ export default function HeroScene({ scrollProgress }) {
             position={[4.5, 6, 5]}
             intensity={3}
             castShadow
-            shadow-mapSize={[2048, 2048]}
+            shadow-mapSize={[512, 512]}
           />
+
+          <AdaptiveDpr pixelated />
+          <AdaptiveEvents />
 
           <SceneController scrollProgress={scrollProgress} activeMode={activeMode} />
 

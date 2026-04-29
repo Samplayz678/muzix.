@@ -43,7 +43,7 @@ function TestimonialCard({ testimonial, index, progress }) {
   return (
     <motion.div
       style={{ z, y, x, opacity, scale, rotateY, transformOrigin: "center center" }}
-      className="absolute top-0 bottom-0 left-0 right-0 m-auto w-full max-w-2xl h-fit glass-panel p-10 md:p-14 rounded-[2.5rem] flex flex-col justify-between group shadow-[0_0_40px_rgba(239,68,68,0.15)] border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl"
+      className="absolute top-0 bottom-0 left-0 right-0 m-auto w-full max-w-2xl h-fit glass-panel p-6 sm:p-10 md:p-14 rounded-[2.5rem] flex flex-col justify-between group shadow-[0_0_40px_rgba(239,68,68,0.15)] border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl"
     >
       <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut" }}>
         <div className="flex gap-1 mb-8 text-accent-primary drop-shadow-[0_0_10px_rgba(239,68,68,0.4)]">

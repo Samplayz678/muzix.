@@ -28,8 +28,8 @@ export default function MuzixLogo({ activeMode = 'pulse', palette }) {
     bevelEnabled: true,
     bevelSize: 0.08,
     bevelThickness: 0.1,
-    bevelSegments: 8,
-    curveSegments: 12,
+    bevelSegments: 2,
+    curveSegments: 4,
     steps: 1,
   }), [])
 

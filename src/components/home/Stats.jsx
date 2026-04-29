@@ -46,7 +46,7 @@ function StatCard({ stat, index, progress }) {
   return (
     <motion.div
       style={{ z, y, x, opacity, scale, rotateY, transformOrigin: "center center" }}
-      className="absolute top-0 bottom-0 left-0 right-0 m-auto w-full max-w-md h-fit glass-panel p-10 md:p-14 rounded-[2.5rem] flex flex-col justify-between group shadow-[0_0_40px_rgba(239,68,68,0.15)] border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl text-center"
+      className="absolute top-0 bottom-0 left-0 right-0 m-auto w-full max-w-md h-fit glass-panel p-6 sm:p-10 md:p-14 rounded-[2.5rem] flex flex-col justify-between group shadow-[0_0_40px_rgba(239,68,68,0.15)] border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl text-center"
     >
       <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut" }}>
         <div className="w-20 h-20 bg-gradient-to-br from-white/10 to-white/0 border border-white/10 rounded-3xl flex items-center justify-center mx-auto mb-8 text-accent-primary group-hover:bg-accent-primary/20 transition-all duration-500 shadow-xl shadow-accent-primary/20">

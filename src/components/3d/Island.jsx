@@ -39,8 +39,7 @@ export default function Island({ activeMode, palette }) {
     <group position={[0, -1.25, 0]}>
       {/* 1. Base Plinth (Dark, heavy brushed metal/graphite) */}
       <mesh receiveShadow castShadow>
-        {/* Increased segments to 128 for a perfectly smooth cylinder */}
-        <cylinderGeometry args={[2.65, 3.05, 0.62, 128]} />
+        <cylinderGeometry args={[2.65, 3.05, 0.62, 32]} />
         <meshPhysicalMaterial
           color="#0a0a0c"
           roughness={0.6}
@@ -49,9 +48,9 @@ export default function Island({ activeMode, palette }) {
         />
       </mesh>
 
-      {/* 2. Top Surface (Matte Acoustic Fabric / Velvet look) */}
+      {/* 2. Top Surface */}
       <mesh position={[0, 0.36, 0]} receiveShadow>
-        <cylinderGeometry args={[2.46, 2.58, 0.14, 128]} />
+        <cylinderGeometry args={[2.46, 2.58, 0.14, 32]} />
         <meshStandardMaterial
           color={palette[activeMode].foliage}
           roughness={1}
@@ -100,8 +99,7 @@ function Decor() {
     <>
       {positions.map((pos, i) => (
         <mesh key={i} position={[pos[0], pos[1], pos[2]]} scale={pos[3]} castShadow receiveShadow>
-          {/* Using perfectly smooth spheres instead of chunky dodecahedrons */}
-          <sphereGeometry args={[0.22, 64, 64]} />
+          <sphereGeometry args={[0.22, 16, 16]} />
           {/* Dark polished obsidian / chrome material */}
           <meshPhysicalMaterial
             color="#050505"

@@ -40,7 +40,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(4.5rem,10vw,10rem)] font-black leading-[0.85] tracking-tighter mb-8 drop-shadow-[0_4px_40px_rgba(239,68,68,0.5)]"
+            className="text-[clamp(3.5rem,10vw,8rem)] md:text-[clamp(4.5rem,10vw,10rem)] font-black leading-[0.85] tracking-tighter mb-8 drop-shadow-[0_4px_40px_rgba(239,68,68,0.5)]"
           >
             <span className="text-white">MU</span>
             <span className="text-gradient">ZIX</span>
