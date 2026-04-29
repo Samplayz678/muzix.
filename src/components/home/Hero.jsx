@@ -4,16 +4,16 @@ import { Link } from 'lucide-react';
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-      
+
       {/* Empty spacer for the global 3D background */}
       <div className="absolute inset-0 z-0 pointer-events-none"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-center pointer-events-none">
-        
+
         {/* Left Copy Container */}
         <div className="w-full md:w-3/5 lg:w-1/2 pt-12 md:pt-0 pointer-events-auto">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -32,11 +32,11 @@ export default function Hero() {
             </div>
 
             <div className="px-5 py-2 border border-accent-primary/30 rounded-full bg-accent-primary/5 text-accent-primary font-extrabold tracking-wider text-sm uppercase">
-              V1.0 Stable Release
+              Premium Discord Music Bot
             </div>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -46,7 +46,7 @@ export default function Hero() {
             <span className="text-gradient">ZIX</span>
           </motion.h1>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -57,7 +57,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -66,13 +66,13 @@ export default function Hero() {
             Muzix turns your Discord server into an immersive listening room with smooth playback, smart queues, custom playlists, and real-time audio control.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-wrap gap-6"
           >
-            <motion.a 
+            <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://discord.com/oauth2/authorize?client_id=1328272164423729233&permissions=281474980236288&integration_type=0&scope=bot+applications.commands"
@@ -84,8 +84,8 @@ export default function Hero() {
               <Link size={20} />
               <span>Invite Me</span>
             </motion.a>
-            
-            <motion.a 
+
+            <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://discord.com/invite/TVR4efd8ts"
