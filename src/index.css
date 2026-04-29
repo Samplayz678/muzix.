@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent-primary: #ef4444;
+  --color-accent-secondary: #dc2626;
+  --color-accent-tertiary: #fca5a5;
+  --color-background-dark: #050505;
+  --color-background-card: rgba(20, 20, 22, 0.85);
+  
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #050505;
+    @apply text-white antialiased font-sans overflow-x-hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-accent-tertiary;
+  }
+
+  .glass-panel {
+    background-color: rgba(20, 20, 22, 0.85);
+    @apply border border-white/5 backdrop-blur-xl shadow-2xl shadow-black/60;
+  }
+}
+
+/* Custom Aurora Blob Animations */
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #050505;
+}
+
+.aurora-blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: blob-float 20s infinite ease-in-out alternate;
+  border-radius: 50%;
+}
+
+.blob-1 {
+  top: -10%; left: -10%;
+  width: 50vw; height: 50vw;
+  background: #ef4444;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  bottom: -20%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: #7f1d1d;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  top: 40%; left: 50%;
+  width: 40vw; height: 40vw;
+  background: #dc2626;
+  animation-delay: -10s;
+  transform: translate(-50%, -50%);
+}
