@@ -3,7 +3,7 @@ import Footer from './Footer';
 
 export default function Layout({ children }) {
   return (
-    <div className="relative min-h-screen flex flex-col selection:bg-accent-primary/30 selection:text-white">
+    <div className="relative min-h-screen flex flex-col selection:bg-accent-primary/30 selection:text-white overflow-x-hidden">
       {/* Background Aurora */}
       <div className="aurora-bg">
         <div className="aurora-blob blob-1"></div>

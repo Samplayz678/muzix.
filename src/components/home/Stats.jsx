@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef } from 'react';
 import { Server, Users, Zap, ShieldCheck } from 'lucide-react';
+import { useMobile } from '../../hooks/useMobile';
 
 const stats = [
   {
@@ -30,15 +31,20 @@ const stats = [
 ];
 
 function StatCard({ stat, index, progress }) {
+  const isMobile = useMobile();
   const total = stats.length;
   const distance = useTransform(progress, (p) => index - p * (total - 1));
 
   const distanceRanges = [-2, -1, 0, 1, 2, 3];
   const dir = index % 2 === 0 ? 1 : -1;
   
-  const z = useTransform(distance, distanceRanges, [600, 300, 0, -300, -600, -900]);
-  const y = useTransform(distance, distanceRanges, [200, 100, 0, -80, -160, -240]);
-  const x = useTransform(distance, distanceRanges, [-150 * dir, -75 * dir, 0, 75 * dir, 150 * dir, 225 * dir]);
+  const xOffset = isMobile ? 40 : 150;
+  const yOffset = isMobile ? 120 : 200;
+  const zOffset = isMobile ? 400 : 600;
+
+  const z = useTransform(distance, distanceRanges, [zOffset, zOffset/2, 0, -zOffset/2, -zOffset, -zOffset*1.5]);
+  const y = useTransform(distance, distanceRanges, [yOffset, yOffset/2, 0, -yOffset/2.5, -yOffset/1.25, -yOffset*1.2]);
+  const x = useTransform(distance, distanceRanges, [-xOffset * dir, -(xOffset/2) * dir, 0, (xOffset/2) * dir, xOffset * dir, xOffset*1.5 * dir]);
   const opacity = useTransform(distance, distanceRanges, [0, 0, 1, 0.4, 0.1, 0]);
   const scale = useTransform(distance, distanceRanges, [1.4, 1.2, 1, 0.9, 0.8, 0.7]);
   const rotateY = useTransform(distance, distanceRanges, [-15 * dir, -7.5 * dir, 0, 7.5 * dir, 15 * dir, 22.5 * dir]);
@@ -46,7 +52,7 @@ function StatCard({ stat, index, progress }) {
   return (
     <motion.div
       style={{ z, y, x, opacity, scale, rotateY, transformOrigin: "center center" }}
-      className="absolute top-0 bottom-0 left-0 right-0 m-auto w-full max-w-md h-fit glass-panel p-6 sm:p-10 md:p-14 rounded-[2.5rem] flex flex-col justify-between group shadow-[0_0_40px_rgba(239,68,68,0.15)] border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl text-center"
+      className="absolute top-0 bottom-0 left-0 right-0 m-auto w-[90%] md:w-full max-w-md h-fit glass-panel p-6 sm:p-10 md:p-14 rounded-[2.5rem] flex flex-col justify-between group shadow-[0_0_40px_rgba(239,68,68,0.15)] border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl text-center"
     >
       <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut" }}>
         <div className="w-20 h-20 bg-gradient-to-br from-white/10 to-white/0 border border-white/10 rounded-3xl flex items-center justify-center mx-auto mb-8 text-accent-primary group-hover:bg-accent-primary/20 transition-all duration-500 shadow-xl shadow-accent-primary/20">

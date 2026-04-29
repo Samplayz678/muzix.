@@ -11,7 +11,7 @@
 }
 
 @layer base {
-  body {
+  html, body {
     background-color: #050505;
     @apply text-white antialiased font-sans overflow-x-hidden;
   }
