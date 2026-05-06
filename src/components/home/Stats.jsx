@@ -11,7 +11,7 @@ const stats = [
   },
   {
     icon: <Users size={40} />,
-    value: "40k+",
+    value: "80k+",
     label: "Users",
     description: "Vibing with our bot daily without interruptions"
   },
