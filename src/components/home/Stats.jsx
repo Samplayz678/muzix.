@@ -11,7 +11,7 @@ const stats = [
   },
   {
     icon: <Users size={40} />,
-    value: "80k+",
+    value: "40k+",
     label: "Users",
     description: "Vibing with our bot daily without interruptions"
   },
@@ -35,7 +35,7 @@ function StatCard({ stat, index, progress }) {
 
   const distanceRanges = [-2, -1, 0, 1, 2, 3];
   const dir = index % 2 === 0 ? 1 : -1;
-  
+
   const z = useTransform(distance, distanceRanges, [600, 300, 0, -300, -600, -900]);
   const y = useTransform(distance, distanceRanges, [200, 100, 0, -80, -160, -240]);
   const x = useTransform(distance, distanceRanges, [-150 * dir, -75 * dir, 0, 75 * dir, 150 * dir, 225 * dir]);
