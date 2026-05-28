@@ -37,20 +37,21 @@ export default function Navbar() {
         transition={{ duration: 0.7, ease }}
         className="pointer-events-auto w-full overflow-visible"
       >
-        <motion.div
-          animate={{
-            maxWidth: scrolled ? '900px' : '2560px',
-            marginTop: scrolled ? '24px' : '0px',
-            borderRadius: scrolled ? '9999px' : '0px',
-            paddingTop: scrolled ? '12px' : '24px',
-            paddingBottom: scrolled ? '12px' : '24px',
-            backgroundColor: scrolled ? 'rgba(17,17,17,0.8)' : 'rgba(0,0,0,0)',
-            boxShadow: scrolled ? '0 20px 40px rgba(0,0,0,0.5)' : '0 0px 0px rgba(0,0,0,0)',
-          }}
-          transition={{ duration: 0.5, ease }}
-          style={{ backdropFilter: scrolled ? 'blur(24px)' : 'blur(0px)', width: '100%' }}
-          className="mx-auto ring-1 ring-white/[0.07]"
-        >
+        <div className="w-full flex justify-center">
+          <motion.div
+            animate={{
+              width: scrolled ? '900px' : '100%',
+              marginTop: scrolled ? '24px' : '0px',
+              borderRadius: scrolled ? '9999px' : '0px',
+              paddingTop: scrolled ? '12px' : '24px',
+              paddingBottom: scrolled ? '12px' : '24px',
+              backgroundColor: scrolled ? 'rgba(17,17,17,0.8)' : 'rgba(0,0,0,0)',
+              boxShadow: scrolled ? '0 20px 40px rgba(0,0,0,0.5)' : '0 0px 0px rgba(0,0,0,0)',
+            }}
+            transition={{ duration: 0.5, ease }}
+            style={{ backdropFilter: scrolled ? 'blur(24px)' : 'blur(0px)', maxWidth: '100%' }}
+            className="ring-1 ring-white/[0.07]"
+          >
           <div
             className="mx-auto flex items-center justify-between px-6 md:px-10 max-w-7xl"
           >
@@ -104,7 +105,8 @@ export default function Navbar() {
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Mobile Nav */}
         <AnimatePresence>
