@@ -83,7 +83,7 @@ const docsContent = [
     title: 'Privacy Policy',
     content: (
       <>
-        <p className="text-center text-gray-400 font-medium mb-12 uppercase tracking-widest text-sm">Last updated: April 14, 2026</p>
+        <p className="text-center text-gray-400 font-medium mb-12 uppercase tracking-widest text-sm">Last updated: June 20, 2026</p>
         
         <h3 className="text-white text-3xl font-bold mb-4">1. Information We Collect</h3>
         <p className="text-gray-300 text-lg leading-relaxed mb-6">To provide a seamless experience, Muzix collects specific, non-invasive data from Discord:</p>
@@ -103,6 +103,28 @@ const docsContent = [
           <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Persistent Data:</strong> Information necessary for continuous features (e.g., Premium User IDs, Custom Playlists) is stored securely in encrypted databases until revoked or deletion is requested.</span></li>
           <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Temporary Data:</strong> Active music queues and voice channel states are held in volatile memory (RAM) and are permanently cleared once playback concludes or the bot disconnects.</span></li>
         </ul>
+
+        <h3 className="text-white text-3xl font-bold mb-4">4. Web Player Privacy Policy</h3>
+        <p className="text-gray-300 text-lg leading-relaxed mb-6">The Muzix Web Player is a browser-based music player for listening, saving favorites, creating playlists, and syncing playback across your devices. The Web Player uses Google account sign-in through NextAuth; it does not use Discord OAuth for user login.</p>
+        <ul className="space-y-4 mb-10">
+          <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Google Account Information:</strong> When you sign in with Google, we may receive your Google account ID, display name, email address, profile image, OAuth provider, and access token for account verification. We do not receive or store your Google password.</span></li>
+          <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Player and Session Data:</strong> We may process playback status, current track, queue actions, device ID, device name, volume, and session activity so the Web Player can sync playback and detect when the same account is playing on another device.</span></li>
+          <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Saved Library and Preferences:</strong> Favorites, playlists, playlist tracks, selected artists, listening history, volume, onboarding status, theme settings, and similar preferences may be stored to keep your Web Player experience attached to your Google account.</span></li>
+          <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Browser and Security Data:</strong> We may collect limited technical data such as IP address, browser type, device information, error logs, and request timestamps to protect the service, prevent abuse, and troubleshoot issues.</span></li>
+          <li className="flex gap-4 text-gray-300 text-lg"><span className="text-accent-primary font-bold">•</span> <span><strong>Cookies and Local Storage:</strong> The Web Player may use NextAuth cookies, local storage, session storage, or similar browser storage to keep you signed in, cache account data, remember preferences, and maintain session security.</span></li>
+        </ul>
+
+        <h3 className="text-white text-3xl font-bold mb-4">5. How Web Player Data Is Used</h3>
+        <p className="text-gray-300 text-lg leading-relaxed mb-10">Web Player data is used to verify Google sign-ins, create and maintain your Muzix account record, save favorites and playlists, remember preferences, sync playback across devices, personalize music discovery, improve reliability, diagnose errors, and protect Muzix from misuse. We do not sell personal data or use Web Player data to build advertising profiles.</p>
+
+        <h3 className="text-white text-3xl font-bold mb-4">6. Third-Party Services</h3>
+        <p className="text-gray-300 text-lg leading-relaxed mb-10">The Web Player may rely on third-party services such as Google authentication, hosting providers, analytics, advertising services, payment processors, and music/source platforms including YouTube, Spotify, and Audius. These services may process information according to their own privacy policies. Muzix only shares the information necessary to provide the requested feature or maintain the service.</p>
+
+        <h3 className="text-white text-3xl font-bold mb-4">7. Your Choices and Data Removal</h3>
+        <p className="text-gray-300 text-lg leading-relaxed mb-10">You can log out of the Web Player, clear browser cookies/local storage, remove saved favorites or playlists, revoke Google account access where available, or request deletion of stored account, playlist, premium, and Web Player data through the official Muzix support server. Some security logs may be retained for a limited period where needed to protect the service or comply with legal obligations.</p>
+
+        <h3 className="text-white text-3xl font-bold mb-4">8. Policy Changes</h3>
+        <p className="text-gray-300 text-lg leading-relaxed mb-10">We may update this Privacy Policy as Muzix and the Web Player evolve. Continued use of Muzix or the Web Player after changes are published means you accept the updated policy.</p>
       </>
     )
   }
