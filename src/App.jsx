@@ -1,18 +1,26 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import Home from './pages/Home';
-import Premium from './pages/Premium';
-import Docs from './pages/Docs';
+
+const Home = lazy(() => import('./pages/Home'));
+const Premium = lazy(() => import('./pages/Premium'));
+const Docs = lazy(() => import('./pages/Docs'));
+
+function RouteFallback() {
+  return <div className="min-h-screen bg-[#050505]" aria-hidden="true" />;
+}
 
 function App() {
   return (
     <Router>
       <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/premium" element={<Premium />} />
-          <Route path="/docs" element={<Docs />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/premium" element={<Premium />} />
+            <Route path="/docs" element={<Docs />} />
+          </Routes>
+        </Suspense>
       </Layout>
     </Router>
   );

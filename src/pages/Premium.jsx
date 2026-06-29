@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Check, Headphones } from 'lucide-react';
+import ShaderGradientBackground from '../components/home/ShaderGradientBackground';
 
 const pricingPlans = [
   {
@@ -10,7 +11,6 @@ const pricingPlans = [
     period: '/wk',
     features: ['7 Days of No-Prefix Commands', 'Server-wide Activation'],
     btnText: 'Choose Weekly',
-    type: 'standard',
   },
   {
     name: 'Monthly',
@@ -20,7 +20,7 @@ const pricingPlans = [
     features: ['30 Days of No-Prefix Commands', 'Server-wide Activation', 'Discord Supporter Role'],
     btnText: 'Choose Monthly',
     badge: 'Most Popular',
-    type: 'popular',
+    featured: true,
   },
   {
     name: 'Yearly',
@@ -29,7 +29,6 @@ const pricingPlans = [
     period: '/yr',
     features: ['1 Year of No-Prefix Commands', 'Server-wide Activation', 'Discord Supporter Role'],
     btnText: 'Choose Yearly',
-    type: 'standard',
   },
   {
     name: 'Lifetime',
@@ -39,144 +38,123 @@ const pricingPlans = [
     features: ['Permanent No-Prefix Access', 'Server-wide Activation', 'Exclusive Macabre Discord Role'],
     btnText: 'Unlock Lifetime',
     badge: 'Limited Slots',
-    type: 'macabre',
   },
 ];
 
-const symbols = { usd: '$', eur: '€', inr: '₹' };
+const symbols = { usd: '$', eur: 'EUR ', inr: 'INR ' };
 
 export default function Premium() {
   const [currency, setCurrency] = useState('usd');
 
   return (
-    <section className="relative pt-40 pb-32 min-h-screen bg-transparent overflow-x-hidden">
-      {/* Background blobs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent-primary/20 blur-[150px] rounded-full pointer-events-none -z-10 mix-blend-screen"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-500/10 blur-[150px] rounded-full pointer-events-none -z-10 mix-blend-screen"></div>
+    <section className="relative min-h-screen overflow-hidden bg-[#050505] px-5 pb-20 pt-16 text-[#f4f1ea] sm:px-8 md:px-10 md:pt-20">
+      <ShaderGradientBackground
+        variant="midu"
+        intensity="midu"
+        className="opacity-75"
+        canvasClassName="mix-blend-screen"
+      />
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tight"
-          >
-            Drop the <span className="text-gradient drop-shadow-[0_0_20px_rgba(239,68,68,0.4)]">Prefix</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-400 text-xl max-w-2xl mx-auto"
-          >
-            Make your server truly seamless. Command Muzix directly without ever typing a prefix again.
-          </motion.p>
-        </div>
-
-        {/* Currency Toggle */}
-        <div className="flex justify-center mb-20">
-          <div className="bg-[#111111]/80 backdrop-blur-2xl border border-white/10 p-2 rounded-full inline-flex gap-2 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
-            {['usd', 'eur', 'inr'].map((c) => (
-              <button
-                key={c}
-                onClick={() => setCurrency(c)}
-                className={`px-8 py-3 rounded-full text-sm font-bold uppercase transition-all duration-300 ${
-                  currency === c 
-                    ? 'bg-white/10 text-white shadow-[0_4px_15px_rgba(0,0,0,0.2)]' 
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="grid gap-10 border-y border-[#f4f1ea]/15 py-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+          <div>
+            <div className="mb-8 flex items-center gap-4">
+              <img src="/images/muzix_new.png" alt="" className="h-12 w-12 object-contain" />
+              <p className="editorial-label text-xs uppercase text-accent-primary/78">P R E M I U M&nbsp;&nbsp; A C C E S S</p>
+            </div>
+            <h1 className="editorial-display text-6xl font-black uppercase leading-[0.86] tracking-normal sm:text-7xl md:text-9xl">
+              Premium sound access.
+            </h1>
           </div>
+
+          <p className="max-w-2xl text-2xl font-semibold leading-10 text-[#f4f1ea]/76 md:text-3xl md:leading-[3rem] lg:justify-self-end">
+            Drop the prefix and make Muzix feel faster in every server. Premium keeps commands seamless for events, voice rooms, and everyday listening.
+          </p>
         </div>
 
-        {/* Pricing Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pricingPlans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className={`relative flex flex-col p-10 rounded-[2rem] backdrop-blur-2xl transition-transform hover:-translate-y-2 hover:scale-[1.02] duration-500 overflow-hidden group ${
-                plan.type === 'popular' 
-                  ? 'bg-[#191423]/80 border border-purple-500/30 shadow-[0_30px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_40px_80px_rgba(139,92,246,0.2)]' 
-                  : plan.type === 'macabre'
-                  ? 'bg-[#1e0f0f]/90 border border-transparent bg-clip-padding shadow-[0_30px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_40px_80px_rgba(239,68,68,0.2)]'
-                  : 'bg-[#121218]/60 border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.5)]'
+        <div className="my-12 flex flex-wrap items-center gap-2 border-b border-[#f4f1ea]/12 pb-8">
+          {['usd', 'eur', 'inr'].map((code) => (
+            <button
+              key={code}
+              type="button"
+              onClick={() => setCurrency(code)}
+              className={`min-h-11 border px-6 py-2 text-sm font-black uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-primary ${
+                currency === code
+                  ? 'border-accent-primary bg-accent-primary text-white'
+                  : 'border-[#f4f1ea]/18 text-[#f4f1ea]/62 hover:border-[#f4f1ea] hover:text-white'
               }`}
             >
-              {plan.type === 'macabre' && (
-                <div className="absolute -inset-[2px] -z-10 rounded-[2.2rem] opacity-70 bg-gradient-to-tr from-accent-primary via-[#800000] to-accent-primary animate-pulse" style={{ backgroundSize: '200% 200%' }}></div>
-              )}
+              {code}
+            </button>
+          ))}
+        </div>
 
-              {/* Top border highlight */}
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50"></div>
-
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch">
+          {pricingPlans.map((plan, index) => (
+            <motion.article
+              key={plan.name}
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.06 }}
+              className={`relative flex min-h-[34rem] flex-1 flex-col border p-7 transition-transform duration-300 hover:-translate-y-2 lg:p-9 xl:p-10 ${
+                plan.featured
+                  ? 'z-20 border-accent-primary bg-[linear-gradient(145deg,#ff3b30_0%,#120303_58%,#050505_100%)] text-white shadow-[0_32px_90px_rgba(255,59,48,0.22)]'
+                  : 'z-10 border-[#f4f1ea]/16 bg-[#0d0d0d] text-[#f4f1ea]'
+              }`}
+            >
               {plan.badge && (
-                <span className={`absolute top-6 right-6 text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur-md ${
-                  plan.type === 'popular' 
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_20px_rgba(139,92,246,0.3)]'
-                    : 'bg-accent-primary/20 text-red-300 border border-accent-primary/40 shadow-[0_0_20px_rgba(239,68,68,0.3)]'
-                }`}>
+                <span className="mb-6 w-fit border border-current/25 px-3 py-2 text-xs font-black uppercase opacity-80">
                   {plan.badge}
                 </span>
               )}
 
-              <h3 className="text-3xl font-bold text-white mb-2">{plan.name}</h3>
-              
-              <div className="my-6 flex flex-col gap-1">
+              <div className="mb-8">
+                <h2 className="editorial-display text-5xl font-black uppercase leading-none tracking-normal">{plan.name}</h2>
+                <p className="mt-4 text-lg leading-8 opacity-68">{plan.desc}</p>
+              </div>
+
+              <div className="border-y border-current/16 py-6">
                 <div className="flex items-center gap-3">
-                  <s className="text-gray-500 text-xl font-semibold decoration-2 decoration-accent-primary/80">
+                  <s className="text-xl font-semibold opacity-42">
                     <AnimatePresence mode="wait">
-                      <motion.span key={currency} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <motion.span key={`old-${currency}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                         {symbols[currency]}{plan.prices[currency].old}
                       </motion.span>
                     </AnimatePresence>
                   </s>
-                  <span className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded border ${
-                    plan.type === 'macabre' ? 'bg-accent-primary/20 text-accent-primary border-accent-primary/30' : 'bg-emerald-500/15 text-emerald-500 border-emerald-500/30'
-                  }`}>Sale</span>
+                  <span className="border border-current/25 px-2 py-1 text-xs font-black uppercase">Sale</span>
                 </div>
-                
-                <div className="flex items-baseline gap-2">
-                  <span className="text-gray-400 text-3xl font-semibold">{symbols[currency]}</span>
+                <div className="mt-3 flex items-end gap-2">
+                  <span className="pb-2 text-2xl font-bold opacity-62">{symbols[currency]}</span>
                   <AnimatePresence mode="wait">
-                    <motion.span key={currency} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="text-6xl font-black tracking-tighter text-white">
+                    <motion.span
+                      key={`new-${currency}`}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      className="editorial-display text-7xl font-black leading-none tracking-normal"
+                    >
                       {plan.prices[currency].new}
                     </motion.span>
                   </AnimatePresence>
-                  <span className="text-gray-500 text-xl font-medium">{plan.period}</span>
+                  <span className="pb-2 text-xl font-semibold opacity-56">{plan.period}</span>
                 </div>
               </div>
 
-              <p className="text-gray-400 text-sm mb-6">{plan.desc}</p>
-
-              <ul className="flex flex-col gap-5 flex-grow border-t border-white/5 pt-8 mb-8">
-                {plan.features.map((feat, idx) => (
-                  <li key={idx} className="flex items-center gap-4 text-gray-300 text-[0.95rem]">
-                    <span className={`p-1.5 rounded-full ${
-                      plan.type === 'macabre' ? 'bg-accent-primary/15 text-accent-primary' : 'bg-purple-500/15 text-purple-400'
-                    }`}>
-                      <Check size={14} strokeWidth={3} />
-                    </span>
-                    <span dangerouslySetInnerHTML={{ __html: feat.replace(/Server-wide Activation|No-Prefix/g, '<b>$&</b>') }}></span>
+              <ul className="my-8 flex flex-col gap-4">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex gap-3 text-lg leading-7 opacity-78">
+                    <Check size={18} className="mt-1 shrink-0 text-accent-primary" aria-hidden="true" />
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <button className={`w-full py-4 rounded-xl font-bold text-lg mt-auto transition-all relative overflow-hidden ${
-                plan.type === 'popular' 
-                  ? 'bg-gradient-to-br from-purple-500 to-purple-700 text-white shadow-[0_10px_20px_rgba(109,40,217,0.3)] hover:shadow-[0_15px_25px_rgba(109,40,217,0.5)] border-none'
-                  : plan.type === 'macabre'
-                  ? 'bg-gradient-to-br from-accent-primary to-[#990000] text-white shadow-[0_10px_20px_rgba(153,0,0,0.4)] hover:shadow-[0_15px_25px_rgba(239,68,68,0.5)] border-none'
-                  : 'bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/30'
-              }`}>
+              <button className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 border border-current bg-white px-5 py-3 text-sm font-black uppercase text-[#050505] transition-colors hover:bg-accent-primary hover:text-white">
+                <Headphones size={17} aria-hidden="true" />
                 {plan.btnText}
               </button>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

@@ -2,6 +2,11 @@ import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
+const seededRandom = (index) => {
+  const value = Math.sin(index * 9283.37) * 10000
+  return value - Math.floor(value)
+}
+
 // 1. Add scrollProgress to the props
 export default function Particles({ count = 80, scrollProgress }) {
   const particlesRef = useRef()
@@ -9,9 +14,9 @@ export default function Particles({ count = 80, scrollProgress }) {
   const positions = useMemo(() => {
     const positions = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 15
-      positions[i * 3 + 1] = Math.random() * 8
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 15
+      positions[i * 3] = (seededRandom(i * 3) - 0.5) * 15
+      positions[i * 3 + 1] = seededRandom(i * 3 + 1) * 8
+      positions[i * 3 + 2] = (seededRandom(i * 3 + 2) - 0.5) * 15
     }
     return positions
   }, [count])

@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'lucide-react';
 
@@ -32,7 +32,7 @@ export default function CTA() {
             </h2>
             
             <p className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto mb-12">
-              Join over 90+ servers and start your journey with the world's most advanced Discord music system.
+              Join over 90+ servers and start your journey with a powerful Discord music bot.
             </p>
 
             <div className="flex flex-wrap justify-center gap-6">

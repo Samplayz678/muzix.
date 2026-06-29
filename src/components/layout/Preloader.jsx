@@ -1,18 +1,23 @@
-import { useProgress } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 export default function Preloader() {
-  const { active, progress } = useProgress();
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.sessionStorage.getItem('muzix-preloader-seen') !== 'true';
+  });
 
   useEffect(() => {
-    // If progress reaches 100 or is no longer active, fade out the loader.
-    if (!active && progress === 100) {
-      setTimeout(() => setShow(false), 500); // Give it a slight delay to feel smooth
-    }
-  }, [active, progress]);
+    const timer = setTimeout(() => {
+      window.sessionStorage.setItem('muzix-preloader-seen', 'true');
+      setShow(false);
+    }, 520);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!show) return null;
 
   return createPortal(
     <AnimatePresence>

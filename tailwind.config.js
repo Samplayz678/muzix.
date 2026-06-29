@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         accent: {
-          primary: '#ef4444',
-          secondary: '#dc2626',
-          tertiary: '#fca5a5',
+          primary: '#ff3b30',
+          secondary: '#7f0000',
+          tertiary: '#fff7f0',
         },
         background: {
           DEFAULT: '#050505',
@@ -18,7 +18,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Inter"', 'sans-serif'],
+        sans: ['"Inter"', '"Helvetica Neue"', 'Arial', 'system-ui', 'sans-serif'],
       }
     },
   },

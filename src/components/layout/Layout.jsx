@@ -3,14 +3,7 @@ import Footer from './Footer';
 
 export default function Layout({ children }) {
   return (
-    <div className="relative min-h-screen flex flex-col selection:bg-accent-primary/30 selection:text-white">
-      {/* Background Aurora */}
-      <div className="aurora-bg">
-        <div className="aurora-blob blob-1"></div>
-        <div className="aurora-blob blob-2"></div>
-        <div className="aurora-blob blob-3"></div>
-      </div>
-
+    <div className="relative isolate min-h-screen flex flex-col bg-[#050505] text-[#f4f1ea] selection:bg-accent-primary/35 selection:text-white">
       <Navbar />
       
       <main className="flex-grow pt-24 relative z-10">
