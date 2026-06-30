@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { featureSpecimens } from './editorialData';
 import ScrollAlphabetReveal from './ScrollAlphabetReveal';
+import useSimpleScrollMotion from '../../hooks/useSimpleScrollMotion';
 
 const accentMap = {
   red: 'group-hover:border-accent-primary/70 group-hover:text-accent-primary',
@@ -11,6 +12,10 @@ const accentMap = {
 const ease = [0.22, 1, 0.36, 1];
 
 export default function FeatureSpecimenGrid() {
+  const reducedMotion = useReducedMotion();
+  const simpleScrollMotion = useSimpleScrollMotion();
+  const stableMotion = reducedMotion || simpleScrollMotion;
+
   return (
     <section
       id="features"
@@ -31,10 +36,10 @@ export default function FeatureSpecimenGrid() {
         </div>
 
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-120px' }}
-          variants={{
+          initial={stableMotion ? false : 'hidden'}
+          whileInView={stableMotion ? undefined : 'visible'}
+          viewport={stableMotion ? undefined : { once: true, margin: '-120px' }}
+          variants={stableMotion ? undefined : {
             hidden: {},
             visible: { transition: { staggerChildren: 0.055 } },
           }}
@@ -43,7 +48,8 @@ export default function FeatureSpecimenGrid() {
           {featureSpecimens.map((feature) => (
             <motion.article
               key={feature.command}
-              variants={{
+              style={stableMotion ? { opacity: 1, y: 0 } : undefined}
+              variants={stableMotion ? undefined : {
                 hidden: { opacity: 0, y: 28 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
               }}

@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Preloader from '../components/layout/Preloader';
 import MiduStyleHero from '../components/home/MiduStyleHero';
 import { INVITE_URL, WEBPLAYER_URL, featureSpecimens, soundTags } from '../components/home/editorialData';
 
@@ -105,7 +104,6 @@ export default function Home() {
 
   return (
     <>
-      <Preloader />
       <div className="relative">
         <MiduStyleHero />
         <DeferredSection id="story" minHeight="90vh">

@@ -97,7 +97,7 @@ export default function MiduStyleHero() {
             data-text="Muzix"
             className="hero-wordmark-letter wavy-watermark editorial-display relative whitespace-nowrap font-black uppercase leading-[0.66] tracking-normal"
           >
-            Muzix
+            MUZIX
           </p>
         </div>
       </motion.div>

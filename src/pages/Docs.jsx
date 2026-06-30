@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ChevronDown, FileText } from 'lucide-react';
 import ShaderGradientBackground from '../components/home/ShaderGradientBackground';
+import useSimpleScrollMotion from '../hooks/useSimpleScrollMotion';
 
 const docsContent = [
   {
@@ -135,6 +136,9 @@ const docsContent = [
 export default function Docs() {
   const location = useLocation();
   const [openSection, setOpenSection] = useState('about');
+  const reducedMotion = useReducedMotion();
+  const simpleScrollMotion = useSimpleScrollMotion();
+  const stableMotion = reducedMotion || simpleScrollMotion;
 
   useEffect(() => {
     const target = location.state?.scrollTarget;
@@ -158,7 +162,7 @@ export default function Docs() {
   }, [location.state]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#050505] px-5 pb-20 pt-16 text-[#f4f1ea] sm:px-8 md:px-10 md:pt-20">
+    <section className="relative -mt-24 min-h-screen overflow-hidden bg-[#050505] px-5 pb-20 pt-36 text-[#f4f1ea] sm:px-8 md:px-10 md:pt-40">
       <ShaderGradientBackground
         variant="midu"
         intensity="midu"
@@ -174,8 +178,9 @@ export default function Docs() {
               <p className="editorial-label text-xs uppercase text-accent-primary/78">D O C S&nbsp;&nbsp; /&nbsp;&nbsp; B O T</p>
             </div>
             <motion.h1
-              initial={{ opacity: 0, y: 24, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={stableMotion ? false : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+              animate={stableMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+              style={stableMotion ? { opacity: 1, y: 0, filter: 'none' } : undefined}
               className="editorial-display break-words text-5xl font-black uppercase leading-[0.88] tracking-normal text-white sm:text-7xl md:text-8xl lg:text-[6.6rem] xl:text-[7.2rem]"
             >
               Documentation.
@@ -183,9 +188,10 @@ export default function Docs() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 }}
+            initial={stableMotion ? false : { opacity: 0, y: 24 }}
+            animate={stableMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={stableMotion ? undefined : { delay: 0.08 }}
+            style={stableMotion ? { opacity: 1, y: 0 } : undefined}
             className="mt-10 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,0.55fr)] lg:items-start"
           >
             <p className="max-w-4xl text-2xl font-semibold leading-10 text-[#f4f1ea]/82 md:text-3xl md:leading-[3rem] lg:text-[2rem]">
@@ -206,10 +212,11 @@ export default function Docs() {
             <motion.div 
               key={section.id}
               id={section.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-120px' }}
-              transition={{ delay: i * 0.1 }}
+              initial={stableMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={stableMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={stableMotion ? undefined : { once: true, margin: '-120px' }}
+              transition={stableMotion ? undefined : { delay: i * 0.1 }}
+              style={stableMotion ? { opacity: 1, y: 0 } : undefined}
               className={`border backdrop-blur-2xl transition-all duration-500 ${
                 openSection === section.id 
                   ? 'border-accent-primary/70 bg-[linear-gradient(145deg,rgba(255,59,48,0.18),rgba(5,5,5,0.94)_42%,rgba(5,5,5,0.82))] shadow-[0_28px_80px_rgba(255,59,48,0.16)]' 

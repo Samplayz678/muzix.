@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { INVITE_URL, SUPPORT_URL } from './editorialData';
+import useSimpleScrollMotion from '../../hooks/useSimpleScrollMotion';
 
 const testimonials = [
   {
@@ -25,6 +26,10 @@ const testimonials = [
 const ease = [0.22, 1, 0.36, 1];
 
 export default function MiduTestimonials() {
+  const reducedMotion = useReducedMotion();
+  const simpleScrollMotion = useSimpleScrollMotion();
+  const stableMotion = reducedMotion || simpleScrollMotion;
+
   return (
     <section className="relative overflow-hidden bg-[#020202] px-5 py-24 text-white sm:px-8 md:px-10 lg:py-32">
       <div className="mx-auto max-w-[118rem]">
@@ -44,10 +49,11 @@ export default function MiduTestimonials() {
           {testimonials.map((item, index) => (
             <motion.article
               key={item.name}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ delay: index * 0.06, duration: 0.6, ease }}
+              initial={stableMotion ? false : { opacity: 0, y: 22 }}
+              whileInView={stableMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={stableMotion ? undefined : { once: true, margin: '-100px' }}
+              transition={stableMotion ? undefined : { delay: index * 0.06, duration: 0.6, ease }}
+              style={stableMotion ? { opacity: 1, y: 0 } : undefined}
               className="flex min-h-72 flex-col justify-between bg-[#020202] p-6 md:p-8"
             >
               <p className="text-lg leading-8 text-white/72">&ldquo;{item.quote}&rdquo;</p>

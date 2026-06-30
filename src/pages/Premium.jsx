@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Check, Headphones } from 'lucide-react';
 import ShaderGradientBackground from '../components/home/ShaderGradientBackground';
+import useSimpleScrollMotion from '../hooks/useSimpleScrollMotion';
 
 const pricingPlans = [
   {
@@ -45,9 +46,12 @@ const symbols = { usd: '$', eur: 'EUR ', inr: 'INR ' };
 
 export default function Premium() {
   const [currency, setCurrency] = useState('usd');
+  const reducedMotion = useReducedMotion();
+  const simpleScrollMotion = useSimpleScrollMotion();
+  const stableMotion = reducedMotion || simpleScrollMotion;
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#050505] px-5 pb-20 pt-16 text-[#f4f1ea] sm:px-8 md:px-10 md:pt-20">
+    <section className="relative -mt-24 min-h-screen overflow-hidden bg-[#050505] px-5 pb-20 pt-36 text-[#f4f1ea] sm:px-8 md:px-10 md:pt-40">
       <ShaderGradientBackground
         variant="midu"
         intensity="midu"
@@ -93,9 +97,10 @@ export default function Premium() {
           {pricingPlans.map((plan, index) => (
             <motion.article
               key={plan.name}
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.06 }}
+              initial={stableMotion ? false : { opacity: 0, y: 28 }}
+              animate={stableMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={stableMotion ? undefined : { delay: index * 0.06 }}
+              style={stableMotion ? { opacity: 1, y: 0 } : undefined}
               className={`relative flex min-h-[34rem] flex-1 flex-col border p-7 transition-transform duration-300 hover:-translate-y-2 lg:p-9 xl:p-10 ${
                 plan.featured
                   ? 'z-20 border-accent-primary bg-[linear-gradient(145deg,#ff3b30_0%,#120303_58%,#050505_100%)] text-white shadow-[0_32px_90px_rgba(255,59,48,0.22)]'

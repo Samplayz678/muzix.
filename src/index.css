@@ -165,7 +165,7 @@
   .hero-wordmark-letter {
     grid-column: 1 / -1;
     grid-row: 2;
-    font-size: clamp(8rem, 28vw, 32rem);
+    font-size: clamp(8rem, 31vw, 34rem);
   }
 
   .muzix-brand-gradient {
@@ -198,9 +198,11 @@
   }
 
   .wavy-watermark {
-    animation: wavy-text 4s ease-in-out infinite, gradient-shift 8s ease-in-out infinite;
-    transform: scaleY(1.4) translateY(-5%);
+    font-family: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+    font-weight: 900;
+    transform: scaleY(1.12) translateY(-2%);
     transform-origin: center;
+    letter-spacing: 0;
     background-image: 
       linear-gradient(135deg, 
         rgba(255, 120, 60, 1) 0%,
@@ -208,8 +210,9 @@
         rgba(255, 210, 160, 1) 50%,
         rgba(255, 160, 110, 1) 70%,
         rgba(255, 120, 60, 1) 100%
-      );
+    );
     background-size: 200% 200%;
+    background-position: 50% 50%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -349,19 +352,6 @@
   33% { transform: translate3d(-0.6%, 0.4%, 0); }
   66% { transform: translate3d(0.5%, -0.5%, 0); }
   100% { transform: translate3d(0, 0, 0); }
-}
-
-@keyframes wavy-text {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-8px) rotate(0.5deg); }
-  50% { transform: translateY(0) rotate(0deg); }
-  75% { transform: translateY(8px) rotate(-0.5deg); }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 @keyframes marquee {
