@@ -82,7 +82,7 @@ export default function MiduStyleHero() {
         className="pointer-events-none absolute inset-x-0 bottom-[2vh] z-[6] select-none overflow-hidden px-5 sm:px-8 md:px-10"
       >
         <svg className="absolute inset-0 w-full h-full opacity-0 pointer-events-none">
-          <filter id="grain-filter">
+          <filter id="grain-filter" x="-18%" y="-26%" width="136%" height="152%">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
             <feColorMatrix type="saturate" values="0" />
             <feComponentTransfer>

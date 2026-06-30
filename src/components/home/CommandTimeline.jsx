@@ -25,6 +25,7 @@ export default function CommandTimeline() {
                 viewport={{ once: true, margin: '-80px', amount: 0.5 }}
                 transition={{ delay: index * 0.05, duration: 0.65, ease }}
                 className="relative grid gap-4 border-b border-[#050505]/18 py-8 pl-8 md:grid-cols-[0.32fr_0.3fr_1fr] md:items-start"
+                style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
               >
                 <span className="absolute -left-[5px] top-10 h-2.5 w-2.5 rounded-full bg-[#050505]" aria-hidden="true" />
                 <span className="editorial-label text-[0.65rem] uppercase text-[#050505]/45">{item.label}</span>

@@ -12,6 +12,13 @@ function canUseWebGL() {
   }
 }
 
+let webGLCache = null;
+function getCachedWebGLSupport() {
+  if (webGLCache !== null) return webGLCache;
+  webGLCache = canUseWebGL();
+  return webGLCache;
+}
+
 class ShaderErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -189,7 +196,7 @@ export default function ShaderGradientBackground({
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { rootMargin: '160px 0px' },
+      { rootMargin: '160px 0px', threshold: 0.01 },
     );
     observer.observe(node);
 
@@ -201,7 +208,7 @@ export default function ShaderGradientBackground({
 
     let cancelled = false;
     const frame = window.requestAnimationFrame(() => {
-      const ready = canUseWebGL();
+      const ready = getCachedWebGLSupport();
       if (cancelled) return;
 
       setWebglReady(ready);
