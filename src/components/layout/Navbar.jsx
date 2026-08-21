@@ -35,23 +35,19 @@ function scrollToTarget(target) {
   }
 }
 
-export default function Navbar() {
+export default function Navbar({ hidden = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const location = useLocation();
 
-  /*
-   * Wait until client mount before creating the portal.
-   */
+  // Wait until client mount before creating portal
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  /*
-   * Detect page scrolling.
-   */
+  // Detect page scrolling
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 24);
@@ -68,16 +64,19 @@ export default function Navbar() {
     };
   }, []);
 
-  /*
-   * Close mobile navbar whenever route changes.
-   */
+  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  /*
-   * Prevent page scrolling while mobile menu is open.
-   */
+  // Close mobile menu if navbar becomes hidden
+  useEffect(() => {
+    if (hidden) {
+      setIsOpen(false);
+    }
+  }, [hidden]);
+
+  // Prevent background scrolling while mobile menu is open
   useEffect(() => {
     if (!isOpen) return;
 
@@ -94,18 +93,14 @@ export default function Navbar() {
 
     if (!target) return;
 
-    /*
-     * Already on homepage:
-     * prevent React Router navigation and scroll directly.
-     */
     if (location.pathname === '/') {
       event.preventDefault();
-
       scrollToTarget(target);
     }
   };
 
-  if (!mounted) {
+  // Don't render before mount OR while loading screen is active
+  if (!mounted || hidden) {
     return null;
   }
 
@@ -228,15 +223,9 @@ export default function Navbar() {
               className="inline-flex h-11 w-11 items-center justify-center border border-[#f4f1ea]/20 text-[#f4f1ea] transition-colors hover:border-[#f4f1ea] md:hidden"
             >
               {isOpen ? (
-                <X
-                  size={22}
-                  aria-hidden="true"
-                />
+                <X size={22} aria-hidden="true" />
               ) : (
-                <Menu
-                  size={22}
-                  aria-hidden="true"
-                />
+                <Menu size={22} aria-hidden="true" />
               )}
             </button>
           </div>
@@ -307,12 +296,5 @@ export default function Navbar() {
     </div>
   );
 
-  /*
-   * IMPORTANT:
-   * Render directly inside document.body.
-   *
-   * This prevents transformed/animated parents from
-   * interfering with position: fixed.
-   */
   return createPortal(navbar, document.body);
 }
